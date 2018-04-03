@@ -3,24 +3,25 @@ package presentacion;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import org.math.plot.Plot2DPanel;
 
 public class VistaImp extends Vista {
 
 	private  PanelInfo panelInfo;
+	//private  Textos textos;
 	private  JFrame frame;
 	private  Plot2DPanel plot ;
 	
 	public VistaImp(){
 		frame = new JFrame();
 		frame.setTitle("Programación Evolutiva");
-		frame.setSize(800, 650);
+		frame.setSize(1200, 900);
 		panelInfo = new PanelInfo();
 		frame.setLayout(new BorderLayout());
 		frame.add(panelInfo, BorderLayout.WEST);
+
 		grafica();
+		
 		frame.setVisible(true);
 	}
 	private void grafica() {
@@ -51,11 +52,6 @@ public class VistaImp extends Vista {
 		plot.addLinePlot("Mejor absoluto", x_generaciones, y_mejorAbsoluto);
 		plot.addLinePlot("Mejor de la generación", x_generaciones, y_mejorPoblacion);
 		plot.addLinePlot("Media de la población", x_generaciones, y_media);
-		
-		
-		if(panelInfo.isPopUpsSelected()){
-			JOptionPane.showMessageDialog(null, "Mejor de la población " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
-		}
 
 	}
 	
