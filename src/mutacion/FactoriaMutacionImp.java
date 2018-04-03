@@ -16,8 +16,6 @@ extends FactoriaMutacion<GenotipoFMI, FenotipoFMI, FitnessFMI>
     {
         switch(tipo)
         {
-            case Normal: return (Mutacion<GenotipoFMI, FenotipoFMI, FitnessFMI>) new MutacionEstandarBinario<FenotipoFMI, FitnessFMI>();
-            case Normal_Real: return (Mutacion<GenotipoFMI, FenotipoFMI, FitnessFMI>) new MutacionEstandarReal<FenotipoFMI, FitnessFMI>();
             default: return null;
         }
     }
