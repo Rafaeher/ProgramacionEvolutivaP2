@@ -12,8 +12,6 @@ public class FactoriaMutacion<GenotipoFM extends Genotipo, FenotipoFM extends Fe
     {
         switch(tipo)
         {
-            case Normal: return (Mutacion<GenotipoFM, FenotipoFM, FitnessFM>) new MutacionEstandarBinario<FenotipoFM, FitnessFM>();
-            case Normal_Real: return (Mutacion<GenotipoFM, FenotipoFM, FitnessFM>) new MutacionEstandarReal<FenotipoFM, FitnessFM>();
             default: return null;
         }
     }
