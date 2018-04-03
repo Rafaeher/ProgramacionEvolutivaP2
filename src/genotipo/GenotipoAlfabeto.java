@@ -1,19 +1,20 @@
 package genotipo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class GenotipoAlfabeto implements Genotipo
 {
 	private static final int NUMLETRAS = 26;
-	private String codigo;
+	private HashMap<Character, Character> codigo;
 	
 	/**
 	 * Constructora por defecto
 	 */
 	public GenotipoAlfabeto()
 	{
-		codigo = "";
+		codigo = new HashMap<Character, Character>();
 	}
 	
 	/**
@@ -34,7 +35,7 @@ public class GenotipoAlfabeto implements Genotipo
 		for(int i = 0; i < NUMLETRAS; i++)
 		{
 			int index = random.nextInt(contenedor.size());
-			codigo += contenedor.get(index);
+			codigo.put(caracteres.charAt(i), contenedor.get(index));
 			contenedor.remove(index);
 		}
 	}
@@ -44,18 +45,19 @@ public class GenotipoAlfabeto implements Genotipo
 	 * 
 	 * @return copia del código
 	 */
-	public String getCodigo()
+	@SuppressWarnings("unchecked")
+	public HashMap<Character, Character> getCodigo()
 	{
-		String clon = codigo;
-		return clon;
+		return (HashMap<Character, Character>) codigo.clone();
 	}
 	
 	
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Genotipo clone()
     {
     	GenotipoAlfabeto clon = new GenotipoAlfabeto();
-    	clon.codigo = codigo;
+    	clon.codigo = (HashMap<Character, Character>) codigo.clone();
     	
     	return clon;
     } 
