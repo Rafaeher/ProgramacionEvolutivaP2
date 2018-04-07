@@ -1,8 +1,6 @@
 package dao;
 
 import java.io.*;
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.HashMap;
 
 public class DAO_Ngramas
@@ -20,9 +18,7 @@ public class DAO_Ngramas
       FileReader fileReader = null;
       BufferedReader bufferedReader = null;
       HashMap<String, Double> resultado = new HashMap<String, Double>();
-      HashMap<String, BigDecimal> frecuencias = new HashMap<String, BigDecimal>();
-      BigDecimal total = new BigDecimal(0);
-      
+      Double total = 0.0;
       try
       {
          archivo = new File (RUTA + obtenerNombreFichero(n));
@@ -34,17 +30,17 @@ public class DAO_Ngramas
          {
             String[] separacion = linea.split(" ");
             String ngrama = separacion[0];
-            BigDecimal frecuencia = new BigDecimal(separacion[1], new MathContext(5));
+            Double frecuencia = Double.valueOf(separacion[1]);
                         
-            frecuencias.put(ngrama, frecuencia);
-            total = total.add(frecuencia);
+            resultado.put(ngrama, frecuencia);
+            total = total + (frecuencia);
          }
          
          
-         for(String ngrama : frecuencias.keySet()) // Para cada n - grama, añade al resultado el n - grama con su frecuencia relativa
+         for(String ngrama : resultado.keySet()) // Para cada n - grama, añade al resultado el n - grama con su frecuencia relativa
          {
-        	 Double frecuenciaRelativa = (frecuencias.get(ngrama).divide(total)).doubleValue();
-        	 resultado.put(ngrama, frecuenciaRelativa);
+        	 Double frecuenciaRelativa = resultado.get(ngrama) / (total);
+        	 resultado.replace(ngrama, frecuenciaRelativa);
          }
       }
       catch(Exception e)
@@ -92,11 +88,16 @@ public class DAO_Ngramas
    {
 	   DAO_Ngramas dao = new DAO_Ngramas();
 	   
-	   HashMap<String, Double> ngramas = dao.lectura(1);
+	   HashMap<String, Double> ngramas = dao.lectura(2);
+	   
+	   Double total = 0.0;
 	   
 	   for(String ngrama : ngramas.keySet())
 	   {
 		   System.out.println(ngrama + "    " + ngramas.get(ngrama).toString());
+		   total += ngramas.get(ngrama);
 	   }
+	   
+	   System.out.println("TOTAL " + total);
    }
 }

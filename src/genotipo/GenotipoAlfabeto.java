@@ -61,5 +61,11 @@ public class GenotipoAlfabeto implements Genotipo
     	
     	return clon;
     } 
+    public int getSize(){
+    	return NUMLETRAS;
+    }
+    public void setCodigo(HashMap<Character, Character> codigo){
+    	this.codigo = codigo;
+    }
 
 }
