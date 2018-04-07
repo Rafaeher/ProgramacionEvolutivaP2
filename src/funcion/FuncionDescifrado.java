@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoMensaje;
-import fenotipo.FenotipoReal;
 import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
