@@ -2,19 +2,21 @@ package genotipo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
+
+import utils.Pair;
 
 public class GenotipoAlfabeto implements Genotipo
 {
 	private static final int NUMLETRAS = 26;
-	private HashMap<Character, Character> codigo;
+	private HashMap<String, Pair<Double, Double>> frecuencias;
+	private ArrayList<Character> codigo;
 	
 	/**
 	 * Constructora por defecto
 	 */
 	public GenotipoAlfabeto()
 	{
-		codigo = new HashMap<Character, Character>();
+		codigo = new ArrayList<Character>();
 	}
 	
 	/**
@@ -22,22 +24,7 @@ public class GenotipoAlfabeto implements Genotipo
 	 */
 	public void inicializacionAleatoria()
 	{
-		final String caracteres = "abcdefghijklmnopqrstuvwxyz";
-		ArrayList<Character> contenedor = new ArrayList<Character>(NUMLETRAS); 
-		
-		for(int i = 0; i < NUMLETRAS; i++)
-		{
-			contenedor.add(caracteres.charAt(i));
-		}
-		
-		Random random = new Random();
-		
-		for(int i = 0; i < NUMLETRAS; i++)
-		{
-			int index = random.nextInt(contenedor.size());
-			codigo.put(caracteres.charAt(i), contenedor.get(index));
-			contenedor.remove(index);
-		}
+
 	}
 	
 	/**
@@ -46,9 +33,9 @@ public class GenotipoAlfabeto implements Genotipo
 	 * @return copia del código
 	 */
 	@SuppressWarnings("unchecked")
-	public HashMap<Character, Character> getCodigo()
+	public ArrayList<Character> getCodigo()
 	{
-		return (HashMap<Character, Character>) codigo.clone();
+		return (ArrayList<Character>) codigo.clone();
 	}
 	
 	
@@ -57,7 +44,7 @@ public class GenotipoAlfabeto implements Genotipo
     public Genotipo clone()
     {
     	GenotipoAlfabeto clon = new GenotipoAlfabeto();
-    	clon.codigo = (HashMap<Character, Character>) codigo.clone();
+    	clon.codigo = (ArrayList<Character>) codigo.clone();
     	
     	return clon;
     } 

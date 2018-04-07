@@ -21,5 +21,5 @@ public abstract class Frecuencias
 	 * @param n
 	 * @return HashMap con las frecuencias
 	 */
-	public abstract HashMap<String, Pair<Integer, Double>> obtenerFrecuencias(int num);
+	public abstract HashMap<String, Pair<Double, Double>> obtenerFrecuencias(int num);
 }

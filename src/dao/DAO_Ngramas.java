@@ -20,12 +20,12 @@ public class DAO_Ngramas
 	 * @return un HashMap en el que la clave es el ngrama y el valor es un par del cual el
 	 * primer elemento se inicializa a 0 y el segundo es la frecuencia relativa del ngrama
 	 */
-   public static HashMap<String, Pair<Integer, Double>> lectura(int n)
+   public static HashMap<String, Pair<Double, Double>> lectura(int n)
    {
       File archivo = null;
       FileReader fileReader = null;
       BufferedReader bufferedReader = null;
-      HashMap<String, Pair<Integer, Double>> resultado = new HashMap<String, Pair<Integer, Double>>();
+      HashMap<String, Pair<Double, Double>> resultado = new HashMap<String, Pair<Double, Double>>();
       Double total = 0.0;
       try
       {
@@ -40,7 +40,7 @@ public class DAO_Ngramas
             String ngrama = separacion[0];
             Double frecuencia = Double.valueOf(separacion[1]);
                         
-            resultado.put(ngrama, new Pair<Integer, Double>(0, frecuencia));
+            resultado.put(ngrama, new Pair<Double, Double>(1.0, frecuencia));
             total = total + (frecuencia);
          }
          
@@ -48,7 +48,7 @@ public class DAO_Ngramas
          for(String ngrama : resultado.keySet()) // Para cada n - grama, añade al resultado el n - grama con su frecuencia relativa
          {
         	 Double frecuenciaRelativa = resultado.get(ngrama).second / (total);
-        	 resultado.replace(ngrama, new Pair<Integer, Double>(0, frecuenciaRelativa));
+        	 resultado.replace(ngrama, new Pair<Double, Double>(1.0, frecuenciaRelativa));
          }
       }
       catch(Exception e)
@@ -94,7 +94,7 @@ public class DAO_Ngramas
    
    public static void main(String[] args)
    {
-	   HashMap<String, Pair<Integer, Double>> ngramas = DAO_Ngramas.lectura(1);
+	   HashMap<String, Pair<Double, Double>> ngramas = DAO_Ngramas.lectura(1);
 	   
 	   Double total = 0.0;
 	   
