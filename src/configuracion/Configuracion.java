@@ -16,46 +16,34 @@ public class Configuracion {
 	//private int numParametros;
 	//Guarda el numero maximo de generaciones que introduce el usario
 	private int num_generaciones;
-	//Probabilidad de mutaciÃ³n (introducida por el usuario)
+	//Probabilidad de mutación (introducida por el usuario)
 	private double prob_mutacion;
 	private double cruceporcentaje;
 	private int tamano_poblacion;
 	private Reproduccion_enum reproduccion_seleccionada;
 	private Mutacion_enum mutacion_seleccionada;
 	private Seleccion_enum seleccion_seleccionada;
-	private Genotipo_enum genotipo_seleccionado;
-	private int problema;
 	private int elite;
-	private int parametrosf5;
+	private String mensaje;
+	private int numNGrama;
 
-	public Configuracion(/*double minimo, double maximo,*/ boolean maximizar,
-			double precision, /*int num_parametros,*/ int num_generaciones, double prob_mutacion,
-			Reproduccion_enum r, Mutacion_enum m, Seleccion_enum s, Genotipo_enum g, int problema, double probcruce,
-			int tamano_poblacion, int e, int parametrosf5) {
-		//this.minimo = minimo;
-		//this.maximo = maximo;
+
+	public Configuracion(boolean maximizar, double precision, int num_generaciones, double prob_mutacion,
+			Reproduccion_enum r, Mutacion_enum m, Seleccion_enum s, Genotipo_enum g, double probcruce,
+			int tamano_poblacion, int el, String mensajeE, int numNGramaE)
+	{
 		this.maximizar = maximizar;
 		this.precision = precision;
-		//this.numParametros = num_parametros;
 		this.num_generaciones = num_generaciones;
 		this.prob_mutacion = prob_mutacion / 100;
-	//	this.setProb_mutacion(prob_mutacion);
 		this.reproduccion_seleccionada = r;
 		this.mutacion_seleccionada = m;
 		this.seleccion_seleccionada = s;
-		if(problema + 1 == 5 && g.equals(Genotipo_enum.Real)){
-			this.problema = 6;
-		}
-		else{
-			this.problema = problema + 1;
-		}
 		this.cruceporcentaje = probcruce/100;
 		this.tamano_poblacion = tamano_poblacion;
-		//this.setProblema(problema);
-		//this.setCruceporcentaje(probcruce);
-		this.genotipo_seleccionado = g;
-		this.elite = e;
-		this.parametrosf5 = parametrosf5;
+		this.elite = el;
+		this.mensaje = mensajeE;
+		this.numNGrama = numNGramaE;
 
 	}
 
@@ -115,14 +103,6 @@ public class Configuracion {
 		this.prob_mutacion = prob_mutacion;
 	}
 	
-	public int getProblema() {
-		return problema;
-	}
-	
-	public void setProblema(int problema) {
-		this.problema = problema;
-	}
-	
 	public double getCruceporcentaje() {
 		return cruceporcentaje;
 	}
@@ -139,22 +119,19 @@ public class Configuracion {
 		this.tamano_poblacion = tamano_poblacion;
 	}
 	
-	public Genotipo_enum getGenotipo_seleccionado()
-	{
-		return this.genotipo_seleccionado;
-	}
-	
 	public int getElite()
 	{
 		return elite;
 	}
-
-	public int getParametrosf5() {
-		return parametrosf5;
+	
+	public String getMensaje()
+	{
+		return mensaje;
 	}
-
-	public void setParametrosf5(int parametrosf5) {
-		this.parametrosf5 = parametrosf5;
+	
+	public int getNumNGrama()
+	{
+		return numNGrama;
 	}
 	
 }
