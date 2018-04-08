@@ -14,6 +14,7 @@ import utils.Pair;
 
 public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal>
 {
+	private int numNGrama;
 	private String mensaje;
 	private static HashMap<String, Pair<Double, Double>> frecuencias;
 	
@@ -22,7 +23,8 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 	{
 		super(poblacion, configuracion);
 		mensaje = configuracion.getMensaje();
-		frecuencias = DAO_Ngramas.lectura(configuracion.getNumNGrama());
+		numNGrama = configuracion.getNumNGrama();
+		frecuencias = DAO_Ngramas.lectura(numNGrama);
 	}
 
 	@Override
@@ -35,6 +37,10 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 			
 			individuo.setFenotipo(fenotipo);
 			fenotipo.setFrecuencias(frecuencias);
+			fenotipo.calcularFrecuencias(numNGrama);
+			
+			
+			
 			
 			
 		}

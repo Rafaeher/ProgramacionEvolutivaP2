@@ -12,6 +12,7 @@ import utils.Pair;
 public class DAO_Ngramas
 {
 	private final static String RUTA = "ngrams/";
+	public final static int NMAX = 5;
 	
 	/**
 	 * Obtiene un HashMap que contiene los n -gramas y sus frecuencias relativas, con n dado.
