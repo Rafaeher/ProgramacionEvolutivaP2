@@ -51,6 +51,8 @@ public class GenotipoAlfabeto implements Genotipo
     public int getSize(){
     	return NUMLETRAS;
     }
-
+    public void setCodigo(ArrayList<Character> c){
+    	codigo = c;
+    }
 
 }

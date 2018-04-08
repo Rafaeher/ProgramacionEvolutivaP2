@@ -58,20 +58,38 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		int puntoB = r.nextInt(i1.getGenotipo().getSize()),
 				puntoA = r.nextInt(puntoB);
 		
-		HashMap<Character, Character> codigoInd1 = new HashMap<Character, Character>();
-		HashMap<Character, Character> codigoInd2 = new HashMap<Character, Character>();
+		ArrayList<Character> GenotipoInd1 = new ArrayList<Character>(26);
+		ArrayList<Character> GenotipoInd2 = new ArrayList<Character>(26);
 		
-		Iterator<Entry<Double, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>>> it = mapa.entrySet().iterator();
-		double acumulada = 0;
-		while (it.hasNext()) {
-			Entry<Double, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>> e = it.next();
-			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> arrayaux = e
-					.getValue();
-			for (int i = 0; i < arrayaux.size(); i++) {
-				acumulada = acumulada + (e.getKey() / fitnessTotal);
-				mapaProbabilidadesAcumuladas.put(acumulada, arrayaux.get(i));
+		//Hashmaps para saber que letras estan ya en uso en cada genotipo (son auxiliares)
+		HashMap<Character, Character> aux1 = new HashMap<Character, Character>();
+		HashMap<Character, Character> aux2 = new HashMap<Character, Character>();
+		
+		//Intercambiamos los genotipos entre los puntos A y B 
+		for(int i = puntoA; i <= puntoB; i++){
+			GenotipoInd1.set(i, i2.getGenotipo().getCodigo().get(i));
+			aux1.put(i2.getGenotipo().getCodigo().get(i),i1.getGenotipo().getCodigo().get(i));
+			GenotipoInd2.set(i, i1.getGenotipo().getCodigo().get(i));
+			aux2.put(i1.getGenotipo().getCodigo().get(i),i2.getGenotipo().getCodigo().get(i));
+		}
+		
+		for(int i = 0; i < puntoA; i++){
+			//Para el Individuo 1
+			if(!aux1.containsKey(i1.getGenotipo().getCodigo().get(i))){
+				//El caracter no ha sido usado así que se puede poner sin problema
+				GenotipoInd1.set(i, i1.getGenotipo().getCodigo().get(i));
+				aux1.put(i1.getGenotipo().getCodigo().get(i), null);
 			}
-
+			else{
+				//El caracter ya esta en uso y por 
+				
+			}
+			//Para el Individuo 2
+			if(!aux2.containsKey(i2.getGenotipo().getCodigo().get(i))){
+				//El caracter no ha sido usado así que se puede poner sin problema
+				GenotipoInd2.set(i, i2.getGenotipo().getCodigo().get(i));
+				aux2.put(i2.getGenotipo().getCodigo().get(i), null);
+			}
 		}
 		
 		return null;
