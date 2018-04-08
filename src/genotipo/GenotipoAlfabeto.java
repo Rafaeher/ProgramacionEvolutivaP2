@@ -8,7 +8,6 @@ import utils.Pair;
 public class GenotipoAlfabeto implements Genotipo
 {
 	private static final int NUMLETRAS = 26;
-	private HashMap<String, Pair<Double, Double>> frecuencias;
 	private ArrayList<Character> codigo;
 	
 	/**
@@ -26,6 +25,7 @@ public class GenotipoAlfabeto implements Genotipo
 	{
 
 	}
+
 	
 	/**
 	 * Obtiene el código del gen

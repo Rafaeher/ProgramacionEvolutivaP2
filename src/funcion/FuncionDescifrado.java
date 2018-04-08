@@ -5,37 +5,44 @@ import java.util.HashMap;
 
 import configuracion.Configuracion;
 import dao.DAO_Ngramas;
+import decodificador.Decodificador;
 import fenotipo.FenotipoMensaje;
-
 import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
-
+import utils.Pair;
 
 public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal>
 {
-
+	private String mensaje;
+	private static HashMap<String, Pair<Double, Double>> frecuencias;
+	
 	public FuncionDescifrado
 	(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion, Configuracion configuracion)
 	{
-
 		super(poblacion, configuracion);
+		mensaje = configuracion.getMensaje();
+		frecuencias = DAO_Ngramas.lectura(configuracion.getNumNGrama());
 	}
 
 	@Override
-
 	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion)
 	{
-	DAO_Ngramas dao = new DAO_Ngramas();
-
-		HashMap<String, Double> ngramas = dao.lectura(2);
-		double fitness = 0.0;
-		for (int i = 0; i < poblacion.size(); i++) {
+		for(Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> individuo : poblacion)
+		{
+			FenotipoMensaje fenotipo = new FenotipoMensaje(mensaje);
+			Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
+			
+			individuo.setFenotipo(fenotipo);
+			fenotipo.setFrecuencias(frecuencias);
+			
 			
 		}
 	}
+
 	@Override
-	public boolean getMaximizar() {
+	public boolean getMaximizar()
+	{
 		return false;
 	}
 
