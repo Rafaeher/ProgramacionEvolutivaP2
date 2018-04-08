@@ -5,21 +5,28 @@ import java.util.HashMap;
 
 import configuracion.Configuracion;
 import dao.DAO_Ngramas;
-import fenotipo.FenotipoReal;
+import fenotipo.FenotipoMensaje;
+
 import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoReal, FitnessReal> {
 
-	public FuncionDescifrado(ArrayList<Individuo<GenotipoFD, FenotipoReal, FitnessReal>> poblacion,
-			Configuracion configuracion) {
+public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal>
+{
+
+	public FuncionDescifrado
+	(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion, Configuracion configuracion)
+	{
+
 		super(poblacion, configuracion);
 	}
 
 	@Override
-	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoReal, FitnessReal>> poblacion) {
-		DAO_Ngramas dao = new DAO_Ngramas();
+
+	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion)
+	{
+	DAO_Ngramas dao = new DAO_Ngramas();
 
 		HashMap<String, Double> ngramas = dao.lectura(2);
 		double fitness = 0.0;

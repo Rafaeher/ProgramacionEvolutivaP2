@@ -2,7 +2,9 @@ package reproduccion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Map.Entry;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
@@ -59,8 +61,17 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		HashMap<Character, Character> codigoInd1 = new HashMap<Character, Character>();
 		HashMap<Character, Character> codigoInd2 = new HashMap<Character, Character>();
 		
-		for(int i = puntoA; i <= puntoB; i++){
-			
+		Iterator<Entry<Double, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>>> it = mapa.entrySet().iterator();
+		double acumulada = 0;
+		while (it.hasNext()) {
+			Entry<Double, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>> e = it.next();
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> arrayaux = e
+					.getValue();
+			for (int i = 0; i < arrayaux.size(); i++) {
+				acumulada = acumulada + (e.getKey() / fitnessTotal);
+				mapaProbabilidadesAcumuladas.put(acumulada, arrayaux.get(i));
+			}
+
 		}
 		
 		return null;
