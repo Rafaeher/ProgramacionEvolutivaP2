@@ -3,13 +3,10 @@ package fenotipo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import utils.Pair;
-
 public class FenotipoMensaje implements Fenotipo
 {
 	private String mensajeCodificado;
 	private String mensajeDecodificado;
-	private HashMap<String, Pair<Double, Double>> frecuencias;
 	
 	/**
 	 * Constructora a partir del mensaje codificado
@@ -20,7 +17,6 @@ public class FenotipoMensaje implements Fenotipo
 	{
 		mensajeCodificado = mensajeCodificadoE;
 		mensajeDecodificado = "";
-		frecuencias = null;
 	}
 	
 	/**
@@ -54,51 +50,18 @@ public class FenotipoMensaje implements Fenotipo
 		return mensajeDecodificado;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Fenotipo clone()
 	{
-		FenotipoMensaje clon = new FenotipoMensaje(mensajeCodificado);
-		clon.mensajeDecodificado = mensajeDecodificado;
-		
-		return clon;
+		return new FenotipoMensaje(mensajeCodificado);
 	}
 	
-	public void setFrecuencias(HashMap<String, Pair<Double, Double>> frecuenciasE)
+	public double comparaFrecuencias()
 	{
-		frecuencias = frecuenciasE;
-	}
-	
-	public void calcularFrecuencias()
-	{
-		
-	}
-	
-	/**
-	 * Obtiene la frecuencia de aparación del ngrama en el mensaje
-	 * 
-	 * @param ngrama: el ngrama cuya frecuencia queremos obtener
-	 * @param numCaracteres: el número de caracteres del mensaje
-	 * @return
-	 */
-	public Double obtenerFrecuenciaCalculada(String ngrama, int numCaracteres)
-	{
-		return frecuencias.get(ngrama).first / numCaracteres;
-	}
-	
-	/**
-	 * Obtiene la frecuencia esperada de un ngrama
-	 * 
-	 * @param ngrama: el ngrama
-	 * @return
-	 */
-	public Double obtenerFrecuenciaEsperada(String ngrama)
-	{
-		return frecuencias.get(ngrama).second;
-	}
-	
-	public void incrementarFrecuencia(String ngrama, double incrementos, int numCaracteres)
-	{
-		frecuencias.get(ngrama).first += incrementos / numCaracteres;
+		return 0;
 	}
 
+
+	
 }
