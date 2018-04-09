@@ -94,7 +94,8 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		}
 	}
 	
-	private void pintar(int it) {
+	private void pintar(int it)
+	{
 		algEvalua(poblacion);
 		//Para pintar
 		x_generaciones[it] = it;

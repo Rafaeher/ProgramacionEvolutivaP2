@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import utils.Alfabeto;
+import utils.Constantes;
 import utils.Pair;
 
 public class GenotipoAlfabeto implements Genotipo
@@ -25,16 +25,19 @@ public class GenotipoAlfabeto implements Genotipo
 	 */
 	public void inicializacionAleatoria()
 	{
-		Random r = new Random();
-		Alfabeto alfabeto = new Alfabeto();
-		HashMap<Character, Character> aux = new HashMap<Character, Character>();
-		while(codigo.size() < NUMLETRAS){
-			Character letra = alfabeto.getAlfabeto().charAt(r.nextInt(NUMLETRAS));
-			if(!aux.containsKey(letra)){
-				aux.put(letra, null);
-				codigo.add(letra);
-			}
-			
+		Random random = new Random();
+		
+		ArrayList<Character> alfabeto = new ArrayList<Character>();
+		for(int i = 0; i < Constantes.ALFABETO.length(); i++)
+		{
+			alfabeto.add(Constantes.ALFABETO.charAt(i));
+		}
+		
+		for(int i = 0; i < Constantes.ALFABETO.length(); i++)
+		{
+			int posRandom = random.nextInt(alfabeto.size());
+			codigo.add(alfabeto.get(posRandom));
+			codigo.remove(posRandom);
 		}
 	}
 
