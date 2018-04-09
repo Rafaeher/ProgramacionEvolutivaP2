@@ -7,7 +7,7 @@ import fenotipo.FenotipoMensaje;
 import fitness.Fitness;
 import genotipo.GenotipoAlfabeto;
 
-public class inversion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
+public class Inversion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
