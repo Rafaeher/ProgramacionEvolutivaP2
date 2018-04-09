@@ -5,14 +5,20 @@ import fenotipo.Fenotipo;
 import fitness.Fitness;
 import genotipo.Genotipo;
 
-public class FactoriaMutacion<GenotipoFM extends Genotipo, FenotipoFM extends Fenotipo, FitnessFM extends Fitness>
+public class
+FactoriaMutacion<GenotipoALF extends Genotipo, FenotipoALF extends Fenotipo, FitnessALF extends Fitness>
 {
-	@SuppressWarnings("unchecked")
-	public Mutacion<GenotipoFM, FenotipoFM, FitnessFM> getMutacion(Mutacion_enum tipo)
+
+    @SuppressWarnings("unchecked")
+    public Mutacion<GenotipoALF, FenotipoALF, FitnessALF> getMutacion(Mutacion_enum tipo)
     {
         switch(tipo)
         {
+        case INSERCION: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new Insercion<FenotipoALF, FitnessALF>();
+        case INVERSION: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new Inversion<FenotipoALF, FitnessALF>();
+        case INTERCAMBIO: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new Intercambio<FenotipoALF, FitnessALF>();
             default: return null;
         }
     }
 }
+
