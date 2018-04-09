@@ -8,17 +8,16 @@ import fitness.*;
 import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class FactoriaFunciones <GenotipoFF extends Genotipo, FenotipoFF extends Fenotipo, FitnessFF extends Fitness> {
+public class FactoriaFunciones<GenotipoALF extends Genotipo, FenotipoALF extends Fenotipo, FitnessALF extends Fitness>{
 
-	@SuppressWarnings("unchecked")
-	public Funcion<GenotipoFF,FenotipoFF,FitnessFF> getSeleccion(int f,
-			ArrayList<Individuo<GenotipoFF,FenotipoFF, FitnessFF>> poblacion,
+	public Funcion<GenotipoALF,FenotipoALF,FitnessALF> getSeleccion(int f,
+			ArrayList<Individuo<GenotipoALF,FenotipoALF, FitnessALF>> poblacion,
 			Configuracion config)
     {
 		
     	switch(f)
 		{
-		default: return null;
+		default: return new FuncionDescifrado(poblacion,config);
 		}
     }
 }
