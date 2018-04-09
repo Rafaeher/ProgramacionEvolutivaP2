@@ -2,10 +2,7 @@ package reproduccion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
-import java.util.Map.Entry;
-
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
 import fenotipo.FenotipoMensaje;
@@ -26,10 +23,10 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		for (int i = 0; i < poblacion.size(); i = i + 2) {
 
 			// Obtenemos dos individuos aleatorios
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = poblacion.get(r.nextInt(poblacion.size()))
-					.clone();
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = poblacion.get(r.nextInt(poblacion.size()))
-					.clone();
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = 
+					poblacion.get(r.nextInt(poblacion.size())).clone();
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = 
+					poblacion.get(r.nextInt(poblacion.size())).clone();
 
 			if (r.nextDouble() <= c.getCruceporcentaje()) {
 				// Cruzamos los dos individuos

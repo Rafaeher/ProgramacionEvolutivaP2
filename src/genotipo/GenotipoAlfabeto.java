@@ -2,7 +2,9 @@ package genotipo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
+import utils.Alfabeto;
 import utils.Pair;
 
 public class GenotipoAlfabeto implements Genotipo
@@ -23,7 +25,17 @@ public class GenotipoAlfabeto implements Genotipo
 	 */
 	public void inicializacionAleatoria()
 	{
-
+		Random r = new Random();
+		Alfabeto alfabeto = new Alfabeto();
+		HashMap<Character, Character> aux = new HashMap<Character, Character>();
+		while(codigo.size() < NUMLETRAS){
+			Character letra = alfabeto.getAlfabeto().charAt(r.nextInt(NUMLETRAS));
+			if(!aux.containsKey(letra)){
+				aux.put(letra, null);
+				codigo.add(letra);
+			}
+			
+		}
 	}
 
 	
