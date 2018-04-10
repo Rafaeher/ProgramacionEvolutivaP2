@@ -9,10 +9,7 @@ import fitness.FitnessReal;
 import funcion.FactoriaFunciones;
 import funcion.Funcion;
 import genotipo.GenotipoAlfabeto;
-import genotipo.GenotipoBinario;
-import genotipo.GenotipoReal;
 import individuo.Individuo;
-import poblacionInicial.FactoriaPrimeraPoblacionBinario;
 
 public class Controlador {
 	
