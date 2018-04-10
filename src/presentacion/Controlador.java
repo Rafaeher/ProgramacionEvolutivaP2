@@ -10,13 +10,14 @@ import funcion.FactoriaFunciones;
 import funcion.Funcion;
 import genotipo.GenotipoAlfabeto;
 import individuo.Individuo;
+import poblacionInicial.FactoriaPoblacionInicial;
 
 public class Controlador {
 	
 	
 	public void execute(Configuracion c)
 	{
-		FactoriaPrimeraPoblacionBinario factoriaPrimeraPoblacion = new FactoriaPrimeraPoblacionBinario();
+		FactoriaPoblacionInicial factoriaPrimeraPoblacion = new FactoriaPoblacionInicial();
 		ArrayList<?> poblacion = factoriaPrimeraPoblacion.getPrimeraPoblacion(c);
 		@SuppressWarnings("unchecked")
 		ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessReal>> pob = (ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessReal>>) poblacion;
