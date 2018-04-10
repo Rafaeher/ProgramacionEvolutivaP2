@@ -53,6 +53,26 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 		
 		return null;
 	}
+	private ArrayList<Character> obtieneCodificacionOrdinal(
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> individuo){
+		Random r = new Random();
+		ArrayList<Character> aux = individuo.getGenotipo().getCodigo();
+		
+		ArrayList<Character> recorrido = new ArrayList<Character>();
+		
+		for(int i = 0; i < individuo.getGenotipo().getSize(); i++){
+			
+			int random = r.nextInt(recorrido.size());
+			recorrido.add(aux.get(random));
+			aux.remove(random);
+			
+		}
+		
+		
+		
+		
+		return null;
+	}
 	
 	
 }
