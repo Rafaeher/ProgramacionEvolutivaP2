@@ -37,6 +37,7 @@ public class DAO_Ngramas
          {
             String[] separacion = linea.split(" ");
             String ngrama = separacion[0];
+            ngrama = ngrama.toLowerCase();
             Double frecuencia = Double.valueOf(separacion[1]);
                         
             resultado.put(ngrama, frecuencia);

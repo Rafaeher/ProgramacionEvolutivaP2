@@ -14,7 +14,7 @@ implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 	public void muta(GenotipoAlfabeto genotipo, double prob_mutacion) {
 		Random r = new Random();
 		if (r.nextDouble() < prob_mutacion) {
-			genotipo = alg_mutacion(genotipo, r.nextInt(), r.nextInt());
+			genotipo = alg_mutacion(genotipo, r.nextInt(genotipo.getSize()), r.nextInt(genotipo.getSize()));
 		}
 
 		

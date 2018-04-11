@@ -18,6 +18,11 @@ public class FenotipoMensaje implements Fenotipo
 		mensajeCodificado = mensajeCodificadoE;
 		mensajeDecodificado = "";
 	}
+	public FenotipoMensaje(String mensajeCodificadoE,String mensajeDeCodificadoE )
+	{
+		mensajeCodificado = mensajeCodificadoE;
+		mensajeDecodificado = mensajeDeCodificadoE;
+	}
 	
 	/**
 	 * Decodifica el mensaje a partir del código
@@ -39,6 +44,7 @@ public class FenotipoMensaje implements Fenotipo
 		{
 			mensajeDecodificado += codigoHash.get(mensajeCodificado.charAt(i));
 		}
+		System.out.println("");
 	}
 	
 	/**
@@ -52,16 +58,16 @@ public class FenotipoMensaje implements Fenotipo
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Fenotipo clone()
+	public Fenotipo cloneFenotipo()
 	{
-		return new FenotipoMensaje(mensajeCodificado);
+		FenotipoMensaje clon =  new FenotipoMensaje(mensajeCodificado);
+		clon.mensajeDecodificado = mensajeDecodificado;
+		return clon;
 	}
 	
 	public double comparaFrecuencias()
 	{
 		return 0;
 	}
-
-
 	
 }

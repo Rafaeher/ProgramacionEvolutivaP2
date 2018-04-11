@@ -20,7 +20,7 @@ public class FenotipoReal implements Fenotipo
     
     public FenotipoGenReal get(int indice)
     {
-    	return (FenotipoGenReal) caracteristicas.get(indice).clone();
+    	return (FenotipoGenReal) caracteristicas.get(indice).cloneGenotipo();
     }
   
 
@@ -56,11 +56,11 @@ public class FenotipoReal implements Fenotipo
     }
     
     @Override
-    public FenotipoReal clone()
+    public FenotipoReal cloneFenotipo()
     {
     	FenotipoReal clon = new FenotipoReal();
     	for(int i = 0; i < caracteristicas.size(); i++)
-    		clon.caracteristicas.add(i, (FenotipoGenReal) caracteristicas.get(i).clone());
+    		clon.caracteristicas.add(i, (FenotipoGenReal) caracteristicas.get(i).cloneGenotipo());
     	
     	return clon;
     }

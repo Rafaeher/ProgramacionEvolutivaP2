@@ -12,11 +12,17 @@ public class Insercion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 
 	@Override
 	public void muta(GenotipoAlfabeto genotipo, double prob_mutacion) {
-
+		int b;
 		Random r = new Random();
-		int pos = r.nextInt();
+		int pos = r.nextInt(genotipo.getSize());
 		if (r.nextDouble() < prob_mutacion) {
-			genotipo = alg_mutacion(genotipo, pos, r.nextInt(pos));
+			if(pos == 0) b = 0;
+			else{
+				b = r.nextInt(pos);
+				System.out.println(b);
+				
+			}
+			genotipo = alg_mutacion(genotipo, pos,b);
 		}
 
 	}

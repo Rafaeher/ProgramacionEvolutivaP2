@@ -35,7 +35,7 @@ public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo
  		while(i < individuosASeleccionar){
  			for(int j = 0; j < vecesPorIndividuo; j++){
  				if(sol.size() < poblacion.size()){
- 					sol.add(poblacion.get(i).clone());
+ 					sol.add(poblacion.get(i).cloneIndividuo());
  				}
  			}
  			i++;
@@ -43,7 +43,7 @@ public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo
  		//Si ha quedado algun hueco por error con los decimales,
  		//lo llenamos con el mejor de la poblacion
  		while(sol.size() < poblacion.size()){
- 			sol.add(poblacion.get(0).clone());
+ 			sol.add(poblacion.get(0).cloneIndividuo());
  		}
 		return sol;
 	}

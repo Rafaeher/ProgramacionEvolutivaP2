@@ -1,6 +1,7 @@
 package funcion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
@@ -40,11 +41,24 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	{
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite = null;
 		int it = 0;
-		algEvalua(poblacion);
+		//algEvalua(poblacion);
 		while (it < configuracion.getNum_generaciones() -1)
         {
+			it++;
+			//seleccion
+			//algSeleccion(poblacion);
+			//pintar(it);
+			algEvalua(poblacion);
+			algSeleccion(poblacion);
+			algReproduccion(poblacion);
+			algMutacion(poblacion);
+			//algEvalua(poblacion);
+			System.out.println(it);
+			if(it == 99){
+				System.out.println(poblacion.size());
+			}
 			
-			if(configuracion.getElite() > 0)
+			/*if(configuracion.getElite() > 0)
 			{
 				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			}
@@ -64,6 +78,9 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			pintar(it);
 			algEvalua(poblacion);
+			if(it == 99){
+				System.out.println(poblacion.size());
+			}*/
 		}
 	}
 
@@ -151,7 +168,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		
 		for(int i = 0; i < elite.size(); i++)
 		{
-			poblacion.set(poblacion.size() - 1 - i, elite.get(i).clone());
+			poblacion.set(poblacion.size() - 1 - i, elite.get(i).cloneIndividuo());
 		}
 		
 	}
@@ -161,11 +178,18 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		poblacion.sort(new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar()));
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> mejores = new ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>();
 		for(int i = 0; i < tam; i++)
-			mejores.add(poblacion.get(i).clone());
+			mejores.add(poblacion.get(i).cloneIndividuo());
 		
 		return mejores;
 		
 	}
-	
+	private boolean tieneElementosRepetidos(ArrayList<Character> array){
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for(int i = 0; i < array.size(); i++){
+			if(map.containsKey(array.get(i)))return true;
+			else map.put(array.get(i), null);
+		}
+		return false;
+	}
 	public abstract boolean getMaximizar();
 }

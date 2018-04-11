@@ -37,7 +37,7 @@ public class GenotipoAlfabeto implements Genotipo
 		{
 			int posRandom = random.nextInt(alfabeto.size());
 			codigo.add(alfabeto.get(posRandom));
-			codigo.remove(posRandom);
+			alfabeto.remove(posRandom);
 		}
 	}
 
@@ -56,10 +56,10 @@ public class GenotipoAlfabeto implements Genotipo
 	
     @SuppressWarnings("unchecked")
 	@Override
-    public Genotipo clone()
+    public Genotipo cloneGenotipo()
     {
     	GenotipoAlfabeto clon = new GenotipoAlfabeto();
-    	clon.codigo = (ArrayList<Character>) codigo.clone();
+    	clon.codigo = new ArrayList<Character>(codigo);
     	
     	return clon;
     } 

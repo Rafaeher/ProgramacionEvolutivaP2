@@ -32,7 +32,7 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			poblacion.sort(comparador);
 			double cmax = poblacion.get(0).getFitness().getValorReal() * 1.05;
 			for(int i = 0; i< poblacion.size(); i++){
-				Individuo<GenotipoR, FenotipoR, FitnessR> individuo = poblacion.get(i).clone();
+				Individuo<GenotipoR, FenotipoR, FitnessR> individuo = poblacion.get(i).cloneIndividuo();
 				double fitness = individuo.getFitness().getValorReal();
 				double fitnessDesplazado = Math.abs(cmax - fitness);
 				FitnessReal f = new FitnessReal(fitnessDesplazado);
@@ -61,7 +61,7 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			poblacion.sort(comparador);
 			double fmin = poblacion.get(0).getFitness().getValorReal();
 			for(int i = 0; i< poblacion.size(); i++){
-				Individuo<GenotipoR, FenotipoR, FitnessR> individuo = poblacion.get(i).clone();
+				Individuo<GenotipoR, FenotipoR, FitnessR> individuo = poblacion.get(i).cloneIndividuo();
 				double fitness = individuo.getFitness().getValorReal();
 				double fitnessDesplazado = fitness + Math.abs(fmin) ;
 				FitnessReal f = new FitnessReal(fitnessDesplazado);
@@ -102,7 +102,7 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			} else {
 				// Ya había un individuo con ese fitness
 				//System.out.println("Ya había un individuo con ese fitness");
-				mapa.get(fitness_individuo).add(poblacion.get(i).clone());
+				mapa.get(fitness_individuo).add(poblacion.get(i).cloneIndividuo());
 			}
 		}
 		
@@ -133,7 +133,7 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			if(individuoseleccionado == null) individuoseleccionado = (Individuo<GenotipoR, FenotipoR, FitnessR>)e.getValue();
 			if ((Double) e.getKey() > random) {
 				Individuo<GenotipoR, FenotipoR, FitnessR> copia = (Individuo<GenotipoR, FenotipoR, FitnessR>) e.getValue();
-				individuoseleccionado = copia.clone();
+				individuoseleccionado = copia.cloneIndividuo();
 				encontrado = true;
 			}
 		}

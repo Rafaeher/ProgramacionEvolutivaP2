@@ -12,7 +12,7 @@ import individuo.Individuo;
 public class TorneoProbabilistico <GenotipoTP extends Genotipo, FenotipoTP extends Fenotipo, FitnessTP extends Fitness>
 implements Seleccion<GenotipoTP, FenotipoTP, FitnessTP>{
 
-	private double prob = 0.68;
+	private double prob = 0.7;
 
 	@Override
 	public ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>
@@ -23,11 +23,10 @@ implements Seleccion<GenotipoTP, FenotipoTP, FitnessTP>{
 		Random r = new Random();
 
 		while (poblacionfinal.size() < poblacion.size()) {
-
 			
-			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo1 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
-			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo2 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
-			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo3 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo1 = poblacion.get(r.nextInt(c.getTamano_poblacion())).cloneIndividuo();
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo2 = poblacion.get(r.nextInt(c.getTamano_poblacion())).cloneIndividuo();
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo3 = poblacion.get(r.nextInt(c.getTamano_poblacion())).cloneIndividuo();
 
 			ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>();
 

@@ -45,7 +45,7 @@ public class FenotipoGenReal implements Cloneable
 		}
 	
 		@Override
-		public Object clone()
+		public Object cloneGenotipo()
 		{
 			FenotipoGenReal clon = new FenotipoGenReal(min, max, precision);
 			clon.fenotipodelgen = fenotipodelgen;

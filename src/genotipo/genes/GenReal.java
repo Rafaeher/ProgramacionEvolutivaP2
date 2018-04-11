@@ -76,7 +76,7 @@ public class GenReal implements Cloneable
     }
 	
 	@Override
-	public Object clone()
+	public Object cloneGenotipo()
 	{
 		return new GenReal(valor, minimo, maximo);
 	}

@@ -120,7 +120,7 @@ public class GenBinario implements Cloneable
     
     @SuppressWarnings("unchecked")
 	@Override
-    public Object clone()
+    public Object cloneGenotipo()
     {
     	GenBinario clon = new GenBinario(longitud);
     	clon.codigo = (ArrayList<Boolean>) codigo.clone();

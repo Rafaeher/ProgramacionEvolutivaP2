@@ -118,12 +118,12 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 	 * Clona un individuo
 	 */
 	@SuppressWarnings("unchecked")
-	public Individuo<GenotipoI, FenotipoI, FitnessI> clone()
+	public Individuo<GenotipoI, FenotipoI, FitnessI> cloneIndividuo()
 	{
 		Individuo<GenotipoI, FenotipoI, FitnessI> clon = new Individuo<GenotipoI, FenotipoI, FitnessI>();
-		clon.genotipo = (GenotipoI) genotipo.clone();
-		clon.fenotipo = (FenotipoI) fenotipo.clone();
-		clon.fitness = (FitnessI) fitness.clone();
+		clon.genotipo = (GenotipoI) genotipo.cloneGenotipo();
+		clon.fenotipo = (FenotipoI) fenotipo.cloneFenotipo();
+		clon.fitness = (FitnessI) fitness.cloneFitness();
 		
 		return clon;
 	}

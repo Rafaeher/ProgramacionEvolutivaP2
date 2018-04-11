@@ -31,7 +31,7 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 			poblacion.sort(comparador);
 			double cmax = poblacion.get(0).getFitness().getValorReal() * 1.05;
 			for(int i = 0; i< poblacion.size(); i++){
-				Individuo<GenotipoE, FenotipoE, FitnessE> individuo = poblacion.get(i).clone();
+				Individuo<GenotipoE, FenotipoE, FitnessE> individuo = poblacion.get(i).cloneIndividuo();
 				double fitness = individuo.getFitness().getValorReal();
 				double fitnessDesplazado = Math.abs(cmax - fitness);
 				FitnessReal f = new FitnessReal(fitnessDesplazado);
@@ -79,7 +79,7 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 
 		for (int i = 0; i < poblacion.size(); i++) {
 			Double fitness_individuo = (Double) poblacion.get(i).getFitness().getValorReal();
-			Individuo<GenotipoE, FenotipoE, FitnessE> individuo = poblacion.get(i).clone();
+			Individuo<GenotipoE, FenotipoE, FitnessE> individuo = poblacion.get(i).cloneIndividuo();
 			if (!mapa.containsKey(fitness_individuo)) {
 				// No habia ningun individuo con ese fitness
 				ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> array = new ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>>();
@@ -87,7 +87,7 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 				mapa.put(fitness_individuo, array);
 			} else {
 				// Ya había un individuo con ese fitness
-				mapa.get(fitness_individuo).add(poblacion.get(i).clone());
+				mapa.get(fitness_individuo).add(poblacion.get(i).cloneIndividuo());
 			}
 		}
 		
@@ -121,7 +121,7 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 			if(individuoseleccionado == null) individuoseleccionado = (Individuo<GenotipoE, FenotipoE, FitnessE>)e.getValue();
 			if ((Double) e.getKey() > posicion) {
 				Individuo<GenotipoE, FenotipoE, FitnessE> copia = (Individuo<GenotipoE, FenotipoE, FitnessE>) e.getValue();
-				individuoseleccionado = copia.clone();
+				individuoseleccionado = copia.cloneIndividuo();
 				encontrado = true;
 			}
 		}

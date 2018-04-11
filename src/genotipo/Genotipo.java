@@ -2,5 +2,5 @@ package genotipo;
 
 public interface Genotipo
 {
-	public Genotipo clone();
+	public Genotipo cloneGenotipo();
 }

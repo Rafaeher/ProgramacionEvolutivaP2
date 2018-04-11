@@ -24,9 +24,9 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 			// Obtenemos dos individuos aleatorios
 			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = 
-					poblacion.get(r.nextInt(poblacion.size())).clone();
+					poblacion.get(r.nextInt(poblacion.size())).cloneIndividuo();
 			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = 
-					poblacion.get(r.nextInt(poblacion.size())).clone();
+					poblacion.get(r.nextInt(poblacion.size())).cloneIndividuo();
 
 			if (r.nextDouble() <= c.getCruceporcentaje()) {
 				// Cruzamos los dos individuos

@@ -2,7 +2,7 @@ package fitness;
 
 public interface Fitness extends Comparable<Fitness>
 {
-	public Fitness clone();
+	public Fitness cloneFitness();
 	
 	public double getValorReal();
 }

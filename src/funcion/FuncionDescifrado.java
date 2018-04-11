@@ -10,7 +10,6 @@ import fenotipo.FenotipoMensaje;
 import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
-import utils.Pair;
 
 public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal>
 {
@@ -25,6 +24,7 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 		mensaje = configuracion.getMensaje();
 		numNGrama = configuracion.getNumNGrama();
 		frecuenciasEsperadas = DAO_Ngramas.lectura(numNGrama);
+		numNGrama = configuracion.getNumNGrama();
 	}
 
 	@Override
@@ -34,7 +34,6 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 		{
 			FenotipoMensaje fenotipo = new FenotipoMensaje(mensaje);
 			Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
-			
 			individuo.setFenotipo(fenotipo);
 			
 			String mensajeDecodificado = fenotipo.getMensajeDecodificado();
@@ -124,7 +123,7 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 				}
 				else
 				{
-					resultado.replace(ngrama, resultado.get(ngrama) + 1);
+					resultado.replace(ngrama, (resultado.get(ngrama) + 1));
 				}
 			}
 		}

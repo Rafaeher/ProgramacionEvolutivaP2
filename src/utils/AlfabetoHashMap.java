@@ -9,5 +9,14 @@ public class AlfabetoHashMap {
 	public AlfabetoHashMap(){
 		alfabeto = new HashMap<Character, Integer>();
 		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		alfabeto.put('a', 1);
+		
 	}
 }
