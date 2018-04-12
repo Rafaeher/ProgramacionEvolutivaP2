@@ -43,7 +43,21 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 			
 			for(String ngrama : frecuenciasRelativas.keySet())
 			{
-				double diferencia = frecuenciasRelativas.get(ngrama) - frecuenciasEsperadas.get(ngrama);
+				double frecuencia = 0.0;
+				if(ngrama.length() < numNGrama){
+					frecuencia = DAO_Ngramas.lectura(ngrama.length()).get(ngrama);
+				}
+				else{
+					try{
+						if(frecuenciasEsperadas.containsKey(ngrama))
+						frecuencia = frecuenciasEsperadas.get(ngrama);
+						else frecuencia = 0.0;
+					}
+					catch(Exception e){
+						System.out.println("");
+					}
+				}
+				double diferencia = frecuenciasRelativas.get(ngrama) - frecuencia;
 				fitness += diferencia * diferencia;
 			}
 			

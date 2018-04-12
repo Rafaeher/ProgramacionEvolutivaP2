@@ -66,8 +66,8 @@ public class FenotipoMensaje implements Fenotipo
 	@Override
 	public Fenotipo cloneFenotipo()
 	{
-		FenotipoMensaje clon =  new FenotipoMensaje(mensajeCodificado);
-		clon.mensajeDecodificado = mensajeDecodificado;
+		FenotipoMensaje clon =  new FenotipoMensaje( new String(mensajeCodificado));
+		clon.mensajeDecodificado = new String( mensajeDecodificado);
 		return clon;
 	}
 	

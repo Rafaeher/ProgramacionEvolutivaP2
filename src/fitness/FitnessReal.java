@@ -26,7 +26,7 @@ public class FitnessReal implements Fitness
 	@Override
 	public Fitness cloneFitness()
 	{
-		return new FitnessReal(valor);
+		return new FitnessReal(new Double(valor));
 	}
 	
 	public double getValor()

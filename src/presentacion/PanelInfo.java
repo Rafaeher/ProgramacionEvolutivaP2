@@ -331,7 +331,7 @@ public class PanelInfo extends javax.swing.JPanel {
 			// A partir de aquï¿½ no estï¿½ en NetBeans
 			//String genotipo = (String) this.jComboBoxTipo.getSelectedItem();
 			//Seleccion_enum s = getSeleccion(seleccion);
-			Seleccion_enum s = Seleccion_enum.Torneo_Probabilistico;
+			Seleccion_enum s = Seleccion_enum.Torneo_Deterministico;
 			Reproduccion_enum r = getReproduccion(cruce);
 			Genotipo_enum g = Genotipo_enum.ALFABETO;
 			Mutacion_enum m = getMutacion("");
@@ -346,7 +346,7 @@ public class PanelInfo extends javax.swing.JPanel {
 			
 			
 			Configuracion c = new Configuracion(true, precision, num_generaciones, prob_mutacion, r, m, s, g,
-					cruceporcentaje, tamano_poblacion, elite,jTextArea3.getText().toLowerCase(), 2);
+					cruceporcentaje, tamano_poblacion, elite,jTextArea3.getText().toLowerCase(), 3);
 			Controlador controlador = new Controlador();
 			System.out.println("tamaño de la poblacion" + tamano_poblacion);
 			controlador.execute(c);

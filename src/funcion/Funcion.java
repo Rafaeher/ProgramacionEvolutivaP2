@@ -44,6 +44,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		//algEvalua(poblacion);
 		while (it < configuracion.getNum_generaciones() -1)
         {
+			/*
 			it++;
 			//seleccion
 			//algSeleccion(poblacion);
@@ -58,8 +59,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 				System.out.println(poblacion.size());
 				
 			}
-			
-			/*if(configuracion.getElite() > 0)
+			*/
+			System.out.println(it);
+			algEvalua(poblacion);
+			if(configuracion.getElite() > 0)
 			{
 				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			}
@@ -77,11 +80,12 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 				colocaLaelite(elite);
 			}
 			
-			pintar(it);
-			algEvalua(poblacion);
+			//pintar(it);
+			//algEvalua(poblacion);
 			if(it == 99){
 				System.out.println(poblacion.size());
-			}*/
+			}
+			
 		}
 	}
 

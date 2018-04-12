@@ -59,7 +59,10 @@ public class GenotipoAlfabeto implements Genotipo
     public Genotipo cloneGenotipo()
     {
     	GenotipoAlfabeto clon = new GenotipoAlfabeto();
-    	clon.codigo = new ArrayList<Character>(codigo);
+    	
+    	for(int i = 0; i < codigo.size(); i++){
+    		clon.codigo.add(new Character(codigo.get(i)));
+    	}
     	
     	return clon;
     } 
