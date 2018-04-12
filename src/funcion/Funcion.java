@@ -56,6 +56,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			System.out.println(it);
 			if(it == 99){
 				System.out.println(poblacion.size());
+				
 			}
 			
 			/*if(configuracion.getElite() > 0)
@@ -83,6 +84,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			}*/
 		}
 	}
+
 
 	private void algSeleccion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> individuos_iniciales)
     {

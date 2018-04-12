@@ -95,7 +95,7 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 	 */
 	private HashMap<String, Double> calcularFrecuencias(int n, String mensajeDecodificado)
 	{
-		int ngramasTotales = 0;
+		Double ngramasTotales = 0.0;
 		HashMap<String, Double> resultado = new HashMap<String, Double>();
 			
 		for(int i = 0; i <= mensajeDecodificado.length() - n; i++)
@@ -116,14 +116,15 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 				
 			if (!ngrama.equals(""))
 			{ 
-				if (ngrama.contains(ngrama))
+				if (!resultado.containsKey(ngrama))
 				{
 					resultado.put(ngrama, 0.0);
 					ngramasTotales++;
 				}
 				else
 				{
-					resultado.replace(ngrama, (resultado.get(ngrama) + 1));
+					resultado.put(ngrama, (resultado.get(ngrama) + 1));
+					//resultado.replace(ngrama, (resultado.get(ngrama) + 1));
 				}
 			}
 		}

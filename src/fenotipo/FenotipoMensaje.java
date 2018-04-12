@@ -42,9 +42,15 @@ public class FenotipoMensaje implements Fenotipo
 		
 		for(int i = 0; i < mensajeCodificado.length(); i++)
 		{
-			mensajeDecodificado += codigoHash.get(mensajeCodificado.charAt(i));
+			if(codigoHash.containsKey(mensajeCodificado.charAt(i))){
+				mensajeDecodificado += codigoHash.get(mensajeCodificado.charAt(i));
+			}
+			else{
+				mensajeDecodificado += " ";
+			}
+			
 		}
-		System.out.println("");
+		//System.out.println("");
 	}
 	
 	/**
@@ -65,9 +71,6 @@ public class FenotipoMensaje implements Fenotipo
 		return clon;
 	}
 	
-	public double comparaFrecuencias()
-	{
-		return 0;
-	}
+
 	
 }
