@@ -1,5 +1,6 @@
 package mutacion;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import fenotipo.Fenotipo;
@@ -12,21 +13,23 @@ implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
 	public void muta(GenotipoAlfabeto genotipo, double prob_mutacion) {
-		Random r = new Random();
-		if (r.nextDouble() < prob_mutacion) {
-			genotipo = alg_mutacion(genotipo, r.nextInt(genotipo.getSize()), r.nextInt(genotipo.getSize()));
-		}
+		for(int i = 0; i < genotipo.getCodigo().size(); i++){
+			Random r = new Random();
+			if (r.nextDouble() < prob_mutacion) {
+				ArrayList<Character> codigo = alg_mutacion(genotipo.getCodigo(), r.nextInt(genotipo.getSize()), r.nextInt(genotipo.getSize()));
+				genotipo.setCodigo(codigo);
+			}
 
-		
+		}
 	}
 
-	private GenotipoAlfabeto alg_mutacion(GenotipoAlfabeto genotipo, int a, int b) {
-		Character aux = genotipo.getCodigo().get(a);
+	private ArrayList<Character> alg_mutacion(ArrayList<Character> codigo, int a, int b) {
+		Character aux = codigo.get(a);
 		
-		genotipo.getCodigo().set(a, genotipo.getCodigo().get(b));
-		genotipo.getCodigo().set(b, aux);
+		codigo.set(a, codigo.get(b));
+		codigo.set(b, aux);
 		
-		return genotipo;
+		return codigo;
 	}
 
 }

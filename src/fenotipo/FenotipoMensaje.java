@@ -59,7 +59,7 @@ public class FenotipoMensaje implements Fenotipo
 	 */
 	public String getMensajeDecodificado()
 	{
-		return mensajeDecodificado;
+		return new String(mensajeDecodificado);
 	}
 	
 	@SuppressWarnings("unchecked")

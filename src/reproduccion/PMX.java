@@ -146,8 +146,8 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		i2.setGenotipo(genotipoFinalInd2);
 
 		ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacionFinal = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>>();
-		poblacionFinal.add(i1);
-		poblacionFinal.add(i2);
+		poblacionFinal.add(i1.cloneIndividuo());
+		poblacionFinal.add(i2.cloneIndividuo());
 		
 		return poblacionFinal;
 	}

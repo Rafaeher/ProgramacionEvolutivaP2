@@ -1,5 +1,6 @@
 package mutacion;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import fenotipo.Fenotipo;
@@ -17,21 +18,22 @@ implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 		Random r = new Random();
 		int posA = r.nextInt();
 		if(r.nextDouble() <= prob_mutacion){
-			genotipo = alg_mutacion(genotipo, r.nextInt(posA) ,posA);
+			ArrayList<Character> codigo = alg_mutacion(genotipo.getCodigo(), r.nextInt(posA) ,posA);
+			genotipo.setCodigo(codigo);
 		}
 	}
 	
-	private GenotipoAlfabeto alg_mutacion(GenotipoAlfabeto genotipo, int posA, int posB){
+	private ArrayList<Character> alg_mutacion(ArrayList<Character> codigo, int posA, int posB){
 		int pososicionesACambiar = posB - posA;
 		
 		Character aux;
 		for(int i = 0; i <= pososicionesACambiar; i++){
-			aux = genotipo.getCodigo().get(posA);
-			genotipo.getCodigo().set(posA, genotipo.getCodigo().get(posB));
-			genotipo.getCodigo().set(posB, aux);
+			aux = codigo.get(posA);
+			codigo.set(posA, codigo.get(posB));
+			codigo.set(posB, aux);
 			posA += 1;
 			posB -= 1;
 		}
-		return null;
+		return codigo;
 	}
 }
