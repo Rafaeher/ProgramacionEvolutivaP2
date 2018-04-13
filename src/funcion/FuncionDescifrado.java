@@ -46,6 +46,7 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 				double frecuencia = 0.0;
 				if(ngrama.length() < numNGrama){
 					frecuencia = DAO_Ngramas.lectura(ngrama.length()).get(ngrama);
+					System.out.println("era menor");
 				}
 				else{
 					try{
@@ -158,6 +159,13 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 	public boolean getMaximizar()
 	{
 		return false;
+	}
+	public Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> mejor(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion){
+		Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> mejor = poblacion.get(0);
+		for(int i = 0; i < poblacion.size(); i++){
+			if(poblacion.get(i).getFitness().getValor() < mejor.getFitness().getValor()) mejor = poblacion.get(i);
+		}
+		return mejor.cloneIndividuo();
 	}
 
 }

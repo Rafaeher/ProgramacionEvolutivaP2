@@ -5,7 +5,9 @@ import java.util.HashMap;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
+import fenotipo.FenotipoMensaje;
 import fitness.Fitness;
+import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.ComparadorIndividuo;
 import individuo.Individuo;
@@ -55,16 +57,19 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			algMutacion(poblacion);
 			//algEvalua(poblacion);
 			System.out.println(it);
-			if(it == 99){
+			if(it == 999){
 				System.out.println(poblacion.size());
+				Individuo ind = mejor(poblacion);
+				System.out.println(ind.getFitness().getValorReal());
 				
 			}
+			
 			/*
 			System.out.println(it);
 			algEvalua(poblacion);
 			if(configuracion.getElite() > 0)
 			{
-				//elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
+				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			}
 			it++;
 			//seleccion
@@ -82,8 +87,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			//pintar(it);
 			//algEvalua(poblacion);
-			if(it == 99){
+			if(it == 299){
 				System.out.println(poblacion.size());
+				Individuo ind = mejor(poblacion);
+				System.out.println(ind.getFitness().getValorReal());
 			}
 			*/
 		}
@@ -178,7 +185,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		}
 		
 	}
-	
+	public abstract Individuo<GenotipoF, FenotipoF, FitnessF> mejor(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion);
 	public ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion, int tam)
 	{
 		poblacion.sort(new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar()));

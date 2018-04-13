@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import configuracion.Configuracion;
 import dao.DAOCarlos;
+import dao.DAO_Ngramas;
 import decodificador.Decodificador;
 import fenotipo.FenotipoMensaje;
 import fitness.FitnessReal;
@@ -27,6 +28,28 @@ public class FuncionCarlos<GenotipoFD extends Genotipo> extends Funcion<Genotipo
 
 	@Override
 	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion) {
+		
+		for(int i = 0; i < poblacion.size(); i++){
+			String mensaje = poblacion.get(0).getFenotipo().getMensajeDecodificado();
+			String[] palabras = mensaje.split(" ");
+			double fitness = 0.0;
+			for(int j = 0; j < palabras.length; j++){
+				double frecuencia = 0.0;
+				if(palabras[i].length() < c.getNumNGrama()){
+					DAO_Ngramas.lectura(palabras[i].length()).get(palabras[i]);
+				}
+				else{
+					String ngrama = "";
+					for(int k = 0; k < palabras[i].length(); k++){
+						
+					}
+				}
+			}
+		}
+		
+		
+		
+		
 		DAOCarlos dao = new DAOCarlos();
 		int cont = 0;
 		for (Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> individuo : poblacion) {
@@ -57,6 +80,13 @@ public class FuncionCarlos<GenotipoFD extends Genotipo> extends Funcion<Genotipo
 	public boolean getMaximizar() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> mejor(
+			ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
