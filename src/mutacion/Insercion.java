@@ -12,7 +12,7 @@ public class Insercion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
-	public void muta(GenotipoAlfabeto genotipo, double prob_mutacion) {
+	public void muta(GenotipoAlfabeto genotipo, FenotipoMensaje fenotipo, double prob_mutacion) {
 		int b;
 		Random r = new Random();
 		int pos = r.nextInt(genotipo.getSize());

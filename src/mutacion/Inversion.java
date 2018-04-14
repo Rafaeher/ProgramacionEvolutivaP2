@@ -12,7 +12,7 @@ public class Inversion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
-	public void muta(GenotipoAlfabeto genotipo, double prob_mutacion) {
+	public void muta(GenotipoAlfabeto genotipo, FenotipoMensaje fenotipo, double prob_mutacion) {
 		//Dado que está mutación cambia gran cantidad del genotipo del individuo
 		//La probabilidad es para el individuo entero y no para cada gen
 		Random r = new Random();

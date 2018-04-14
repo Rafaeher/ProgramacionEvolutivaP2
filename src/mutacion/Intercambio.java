@@ -12,7 +12,7 @@ public class Intercambio<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitnes
 implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
-	public void muta(GenotipoAlfabeto genotipo, double prob_mutacion) {
+	public void muta(GenotipoAlfabeto genotipo, FenotipoMensaje fenotipo, double prob_mutacion) {
 		for(int i = 0; i < genotipo.getCodigo().size(); i++){
 			Random r = new Random();
 			if (r.nextDouble() < prob_mutacion) {

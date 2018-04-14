@@ -46,7 +46,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		//algEvalua(poblacion);
 		while (it < configuracion.getNum_generaciones() -1)
         {
-			
+			/*
 			it++;
 			//seleccion
 			//algSeleccion(poblacion);
@@ -57,14 +57,14 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			algMutacion(poblacion);
 			//algEvalua(poblacion);
 			System.out.println(it);
-			if(it == 999){
+			if(it == 299){
 				System.out.println(poblacion.size());
 				Individuo ind = mejor(poblacion);
 				System.out.println(ind.getFitness().getValorReal());
 				
 			}
+			*/
 			
-			/*
 			System.out.println(it);
 			algEvalua(poblacion);
 			if(configuracion.getElite() > 0)
@@ -79,20 +79,26 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			algReproduccion(poblacion);
 			//Mutacion
 			if(configuracion.getProb_mutacion() > 0)
-			//algMutacion(poblacion);
+			if(it == 33){
+					System.out.println("");
+					System.out.println("");
+			}
+			algMutacion(poblacion);
 			if(configuracion.getElite() > 0){
 				algEvalua(poblacion);
-				//colocaLaelite(elite);
+				colocaLaelite(elite);
 			}
 			
 			//pintar(it);
 			//algEvalua(poblacion);
-			if(it == 299){
+			Individuo ind = mejor(poblacion);
+			System.out.println(ind.getFitness().getValorReal());
+			if(it == 599){
 				System.out.println(poblacion.size());
-				Individuo ind = mejor(poblacion);
+				ind = mejor(poblacion);
 				System.out.println(ind.getFitness().getValorReal());
 			}
-			*/
+			
 		}
 	}
 

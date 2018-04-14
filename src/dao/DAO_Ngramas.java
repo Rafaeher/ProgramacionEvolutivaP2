@@ -88,7 +88,12 @@ public class DAO_Ngramas
 	   case 3: return "trigrams.txt";
 	   case 4: return "quadgrams.txt";
 	   case 5: return "quintgrams.txt";
-	   default: return "words.txt";
+	   case 6: return "top1.txt";
+	   case 7: return "top2.txt";
+	   case 8: return "top3.txt";
+	   case 9: return "top4.txt";
+	   case 10: return "top5.txt";
+	   default: return "carlos.txt";
 	   }
    }
    
