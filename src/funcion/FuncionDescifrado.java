@@ -131,10 +131,11 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 				
 			if (!ngrama.equals(""))
 			{ 
+				ngramasTotales++;
 				if (!resultado.containsKey(ngrama))
 				{
 					resultado.put(ngrama, 0.0);
-					ngramasTotales++;
+					//ngramasTotales++;
 				}
 				else
 				{
@@ -146,10 +147,10 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 			
 		for(String ngrama : resultado.keySet())
 		{
-			if (ngrama.length() == n)
-			{
+			//if (ngrama.length() == n)
+			//{
 				resultado.replace(ngrama, resultado.get(ngrama) / ngramasTotales);
-			}
+			//}
 		}
 		
 		return resultado;

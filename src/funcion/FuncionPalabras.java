@@ -11,12 +11,12 @@ import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class FuncionHibrida<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal> {
+public class FuncionPalabras<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal> {
 	private int numNGrama;
 	private String mensaje;
 	private static HashMap<String, Double> frecuenciasEsperadas;
 
-	public FuncionHibrida(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion,
+	public FuncionPalabras(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion,
 			Configuracion configuracion) {
 		super(poblacion, configuracion);
 		mensaje = configuracion.getMensaje();
@@ -42,58 +42,58 @@ public class FuncionHibrida<GenotipoFD extends Genotipo> extends Funcion<Genotip
 
 	private double MultiplicaPalabras(String mensajeDecodificado) {
 		String[] palabras = mensajeDecodificado.split(" ");
-		double cont = palabras.length;
+		double cont = 0.0;
 		HashMap<String, Double> mapTop1 = DAO_Ngramas.lectura(6);
 		HashMap<String, Double> mapTop2 = DAO_Ngramas.lectura(7);
 		HashMap<String, Double> mapTop3 = DAO_Ngramas.lectura(8);
 		HashMap<String, Double> mapTop4 = DAO_Ngramas.lectura(9);
 		HashMap<String, Double> mapTop5 = DAO_Ngramas.lectura(10);
 		ArrayList<Double> array = new ArrayList<Double>(5);
-		for(int i = 0; i < 5; i++) array.add(0.0);
+		for (int i = 0; i < 5; i++)
+			array.add(0.0);
 		HashMap<String, Double> aux = new HashMap<String, Double>();
+		int num1 = 0, num2 = 0, num3 = 0, num4 = 0, num5 = 0;
 		// HashMap<String, Double> mapTop4= DAO_Ngramas.lectura(9);
 		for (int i = 0; i < palabras.length; i++) {
-			if (!aux.containsKey(palabras[i])) {
-				aux.put(palabras[i], null);
-				if (mapTop1.containsKey(palabras[i])) {
-					// System.out.println("TOP1 " + palabras[i]);
-					//cont -= 1.0;
-					array.set(0, array.get(0)+1);
-				} else if (mapTop2.containsKey(palabras[i])) {
-					// System.out.println("TOP2 " + palabras[i]);
-					//cont -= 0.5;
-					array.set(1, array.get(1)+1);
+			if (mapTop1.containsKey(palabras[i])) {
+				if(!aux.containsKey(palabras[i])){
+					array.add(0, array.get(0) + 1);
+					
 				}
-				else if (mapTop3.containsKey(palabras[i])) {
-					// System.out.println("TOP2 " + palabras[i]);
-					//cont -= 0.25;
-					array.set(2, array.get(2)+1);
+				num1++;
+			} else if (mapTop2.containsKey(palabras[i])) {
+				if(!aux.containsKey(palabras[i])){
+					array.add(1, array.get(1) + 1);
 				}
-				else if (mapTop4.containsKey(palabras[i])) {
-					// System.out.println("TOP2 " + palabras[i]);
-					//cont -= 0.12;
-					array.set(3, array.get(3)+1);
-				} 
-				else if (mapTop5.containsKey(palabras[i])) {
-					// System.out.println("TOP2 " + palabras[i]);
-					//cont -= 0.06;
-					array.set(4, array.get(4)+1);
-				} 
-				/*
-				 * else if(mapTop3.containsKey(palabras[i])){ //
-				 * System.out.println("TOP3 " + palabras[i]); cont -=0.2; }else
-				 * if(mapTop4.containsKey(palabras[i])){ // System.out.println(
-				 * "TOP4 " + palabras[i]); cont -=0.1; }
-				 */
-				
+				num2++;
+			} else if (mapTop3.containsKey(palabras[i])) {
+				if(!aux.containsKey(palabras[i])){
+					array.add(2, array.get(2) + 1);
+				}
+				num3++;
+			} else if (mapTop4.containsKey(palabras[i])) {
+				if(!aux.containsKey(palabras[i])){
+					array.add(2, array.get(2) + 1);
+				}
+				num4++;
+			} else if (mapTop5.containsKey(palabras[i])) {
+				if(!aux.containsKey(palabras[i])){
+					array.add(2, array.get(2) + 1);
+				}
+				num5++;
 			}
 
 		}
-		double factor = ((array.get(0) * 3) + array.get(1)) / 6;
-	//	System.out.println("factor " + factor);
-		double total = (array.get(2) * factor) + (array.get(3) * factor/2) + (array.get(4) * factor/3);
-	//	System.out.println("total "+ total);
-		return total;
+		double resultado = (num1 * 3) + (num2 * 1) + (num3 * 0.5) + (num4 * 0.25) + (num5 * 0.125);
+		//double factor = ((array.get(0) * 3) + array.get(1)) / 6;
+		// System.out.println("factor " + factor);
+		// if(array.get(0) == 0) factor = factor/3;
+		// else System.out.println("hay the");
+		// double total = (array.get(2) * factor) + (array.get(3) * factor) +
+		// (array.get(4) * factor);
+		// System.out.println("total "+ total);
+		//double total = cont * factor;
+		return resultado;
 	}
 
 	/**

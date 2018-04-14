@@ -93,7 +93,7 @@ public class DAO_Ngramas
 	   case 8: return "top3.txt";
 	   case 9: return "top4.txt";
 	   case 10: return "top5.txt";
-	   default: return "carlos.txt";
+	   default: return "words.txt";
 	   }
    }
    
