@@ -22,6 +22,11 @@ public class PanelInfo extends javax.swing.JPanel {
 	public PanelInfo() {
 		initComponents();
 	}
+	
+	public void setTexto(String texto)
+	{
+		this.jTextArea4.setText(texto);
+	}
 
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
@@ -266,6 +271,32 @@ public class PanelInfo extends javax.swing.JPanel {
 		this.jTextFieldProbMutacion.setText("5");
 		this.jTextFieldError.setText("0.001");
 		this.jTextFieldElite.setText("2");
+		String texto3 = "GNX NVMVNL XP G QUEVNLV NGSCV PM WYZGS GOXUEUXUVL US ONVGXUSC EULYGT,";
+		texto3 += "GYQUXPNH PN KVNMPNZUSC GNXUMGOXL. XWVLV GNXFPNBL VJKNVLL XWV GYXWPN'L UZGCU";
+		texto3 += "SGXUEV PN XVOWSUOGT LBUTT. GNX UL USXVSQVQ XP IV GKKNVOUGXVQ MPN UXL IVGYXH";
+		texto3 += " PN VZPXUPSGT KPFVN. US XWVUN ZPLX CVSVNGT MPNZ XWVLV GOXUEUXUVL USOTYQV XW";
+		texto3 += "V KNPQYOXUPS PM FPNBL PM GNX, XWV ONUXUOULZ PM GNX, XWV LXYQH PM XWV WULXPN";
+		texto3 += "H PM GNX, GSQ XWV GVLXWVXUO QULLVZUSGXUPS PM GNX. GNX WGL WGQ G CNVGX SYZIV";
+		texto3 += "N PM QUMMVNVSX MYSOXUPSL XWNPYCWPYX UXL WULXPNH, ZGBUSC UXL KYNKPLV QUMMUOY";
+		texto3 += "TX XP GILXNGOX PN RYGSXUMH XP GSH LUSCTV OPSOVKX. XWUL QPVL SPX UZKTH XWGX ";
+		texto3 += "XWV KYNKPLV PM GNX UL EGCYV, IYX XWGX UX WGL WGQ ZGSH YSURYV, QUMMVNVSX N";
+		texto3 += "VGLPSL MPN IVUSC ONVGXVQ. GNX OGS WGEV G KVNLPSGT MYSOXUPS, UX UL GS VJKNVL";
+		texto3 += "LUPS PM IGLUO WYZGS USLXUSOX MPN WGNZPSH, IGTGSOV, NWHXWZ. GNX GX XWUL TVEV";
+		texto3 += "T UL SPX GS GOXUPS PN GS PIDVOX, IYX GS USXVNSGT GKKNVOUGXUPS PM IGTGSOV GS";
+		texto3 += "Q WGNZPSH (IVGYXH), GSQ XWVNVMPNV GS GLKVOX PM IVUSC WYZGS IVHPSQ YXUTUXH. ";
+		texto3 += "GNX GTLP KNPEUQVL G FGH XP VJKVNUVSOV PSV'L LVTM US NVTGXUPS XP XWV YSUEVNL";
+		texto3 += "V. XWUL VJKVNUVSOV ZGH PMXVS OPZV YSZPXUEGXVQ, GL PSV GKKNVOUGXVL GNX, ZYLU";
+		texto3 += "O PN KPVXNH. PS XWV PXWVN WGSQ GNX ZGH WGEV G LPOUGT MYSOXUPS. GX UXL LUZKT";
+		texto3 += "VLX, GNX UL G MPNZ PM OPZZYSUOGXUPS. UX LVVBL XP VSXVNXGUS GSQ INUSC GIPYX ";
+		texto3 += "G KGNXUOYTGN VZPXUPS PN ZPPQ, MPN XWV KYNKPLV PM NVTGJUSC PN VSXVNXGUSUSC X";
+		texto3 += "WV EUVFVN. GNX ZGH GTLP IV GS VJKNVLLUPS PM LPOUGT KNPXVLX, LVVBUSC XP RYVL";
+		texto3 += "XUPS GLKVOXL PM LPOUVXH. XWV PTQVLX MPNZ PM GNX GNV EULYGT GNXL, FWUOW USOT";
+		texto3 += "YQV ONVGXUPS PM UZGCVL PN PIDVOXL US MUVTQL USOTYQUSC KGUSXUSC, LOYTKXYNV, ";
+		texto3 += "KNUSXZGBUSC, KWPXPCNGKWH, GSQ PXWVN EULYGT ZVQUG. GNOWUXVOXYNV UL PMXVS USO";
+		texto3 += "TYQVQ GL PSV PM XWV EULYGT GNXL; WPFVEVN, TUBV XWV QVOPNGXUEV GNXL, UX USEP";
+		texto3 += "TEVL XWV ONVGXUPS PM PIDVOXL FWVNV XWV KNGOXUOGT OPSLUQVNGXUPSL PM YLV GNV ";
+		texto3 += "VLLVSXUGT, US G FGH XWGX XWVH YLYGTTH GNV SPX US G KGUSXUSC, MPN VJGZKTV.";
+		this.jTextArea3.setText(texto3);
 
 		this.jTextArea3.setLineWrap(true);
 		this.jTextArea3.setWrapStyleWord(true);
@@ -346,7 +377,7 @@ public class PanelInfo extends javax.swing.JPanel {
 			
 			
 			Configuracion c = new Configuracion(true, precision, num_generaciones, prob_mutacion, r, m, s, g,
-					cruceporcentaje, tamano_poblacion, elite,jTextArea3.getText().toLowerCase(), 4);
+					cruceporcentaje, tamano_poblacion, elite, jTextArea3.getText().toLowerCase(), 4);
 			Controlador controlador = new Controlador();
 			System.out.println("tamaño de la poblacion" + tamano_poblacion);
 			controlador.execute(c);

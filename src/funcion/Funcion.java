@@ -93,7 +93,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			//algEvalua(poblacion);
 			Individuo ind = mejor(poblacion);
 			System.out.println(ind.getFitness().getValorReal());
-			if(it == 299){
+			if(it == 99){
 				System.out.println(poblacion.size());
 				ind = mejor(poblacion);
 				System.out.println(ind.getFitness().getValorReal());
@@ -211,4 +211,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		return false;
 	}
 	public abstract boolean getMaximizar();
+	
+	public Individuo<GenotipoF, FenotipoF, FitnessF> getMejor()
+	{
+		poblacion.sort(new ComparadorIndividuo(getMaximizar()));
+		return poblacion.get(0);
+	}
 }
