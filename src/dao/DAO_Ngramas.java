@@ -9,68 +9,74 @@ import java.util.HashMap;
 
 public class DAO_Ngramas
 {
+	private static HashMap<String, Double> ngramas;
+	private static int n;
 	private final static String RUTA = "ngrams/";
 	public final static int NMAX = 5;
 	
 	/**
 	 * Obtiene un HashMap que contiene los n -gramas y sus frecuencias relativas, con n dado.
 	 * 
-	 * @param n
+	 * @param num
 	 * @return un HashMap en el que la clave es el ngrama y el valor es un par del cual el
 	 * primer elemento se inicializa a 0 y el segundo es la frecuencia relativa del ngrama
 	 */
-   public static HashMap<String, Double> lectura(int n)
+   public static HashMap<String, Double> lectura(int num)
    {
-      File archivo = null;
-      FileReader fileReader = null;
-      BufferedReader bufferedReader = null;
-      HashMap<String, Double> resultado = new HashMap<String, Double>();
-      Double total = 0.0;
-      try
-      {
-         archivo = new File (RUTA + obtenerNombreFichero(n));
-         fileReader = new FileReader (archivo);
-         bufferedReader = new BufferedReader(fileReader);
-
-         String linea;
-         while((linea=bufferedReader.readLine()) != null)
-         {
-            String[] separacion = linea.split(" ");
-            String ngrama = separacion[0];
-            ngrama = ngrama.toLowerCase();
-            Double frecuencia = Double.valueOf(separacion[1]);
-                        
-            resultado.put(ngrama, frecuencia);
-            total = total + (frecuencia);
-         }
-         
-         
-         for(String ngrama : resultado.keySet()) // Para cada n - grama, añade al resultado el n - grama con su frecuencia relativa
-         {
-        	 Double frecuenciaRelativa = resultado.get(ngrama) / (total);
-        	 resultado.replace(ngrama, frecuenciaRelativa);
-         }
-      }
-      catch(Exception e)
-      {
-         e.printStackTrace();
-      }
-      finally
-      {
-         try
-         {                    
-            if( null != fileReader )
-            {   
-               fileReader.close();     
-            }                  
-         }
-         catch (Exception e2)
-         { 
-            e2.printStackTrace();
-         }
-      }
+	  if (ngramas == null || num != n)
+	  {
+		  n = num;
+	      File archivo = null;
+	      FileReader fileReader = null;
+	      BufferedReader bufferedReader = null;
+	      ngramas = new HashMap<String, Double>();
+	      Double total = 0.0;
+	      try
+	      {
+	         archivo = new File (RUTA + obtenerNombreFichero(n));
+	         fileReader = new FileReader (archivo);
+	         bufferedReader = new BufferedReader(fileReader);
+	
+	         String linea;
+	         while((linea=bufferedReader.readLine()) != null)
+	         {
+	            String[] separacion = linea.split(" ");
+	            String ngrama = separacion[0];
+	            ngrama = ngrama.toLowerCase();
+	            Double frecuencia = Double.valueOf(separacion[1]);
+	                        
+	            ngramas.put(ngrama, frecuencia);
+	            total = total + (frecuencia);
+	         }
+	         
+	         
+	         for(String ngrama : ngramas.keySet()) // Para cada n - grama, añade al resultado el n - grama con su frecuencia relativa
+	         {
+	        	 Double frecuenciaRelativa = ngramas.get(ngrama) / (total);
+	        	 ngramas.replace(ngrama, frecuenciaRelativa);
+	         }
+	      }
+	      catch(Exception e)
+	      {
+	         e.printStackTrace();
+	      }
+	      finally
+	      {
+	         try
+	         {                    
+	            if( null != fileReader )
+	            {   
+	               fileReader.close();     
+	            }                  
+	         }
+	         catch (Exception e2)
+	         { 
+	            e2.printStackTrace();
+	         }
+	      }
+	  }
       
-      return resultado;
+	  return ngramas;
    }
    
    /**
