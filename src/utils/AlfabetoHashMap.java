@@ -2,21 +2,27 @@ package utils;
 
 import java.util.HashMap;
 
+import dao.DAO_Ngramas;
+
 public class AlfabetoHashMap {
 	
-	private HashMap<Character, Integer>alfabeto;
+	private static HashMap<Character, Integer>alfabeto;
 
-	public AlfabetoHashMap(){
-		alfabeto = new HashMap<Character, Integer>();
-		alfabeto.put('a', 0);
-		alfabeto.put('b', 1);
-		alfabeto.put('c', 2);
-		alfabeto.put('d', 3);
-		alfabeto.put('e', 4);
-		alfabeto.put('f', 5);
-		alfabeto.put('g', 6);
-		alfabeto.put('h', 7);
-		alfabeto.put('i', 8);
+	public static HashMap<Character, Integer> getAlfabetoHashMap()
+	{
+		if (alfabeto == null)
+		{
+			alfabeto = new HashMap<Character, Integer>();
+			HashMap<String, Double> ngramas = DAO_Ngramas.lectura(1);
+			
+			int i = 0;
+			for(String ngrama : ngramas.keySet())
+			{
+				alfabeto.put(ngrama.charAt(0), i);
+				i++;
+			}
+		}
 		
+		return alfabeto;
 	}
 }

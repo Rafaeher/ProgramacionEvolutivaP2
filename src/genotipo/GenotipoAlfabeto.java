@@ -1,13 +1,12 @@
 package genotipo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 import utils.Constantes;
-import utils.Pair;
 
-public class GenotipoAlfabeto implements Genotipo {
+public class GenotipoAlfabeto implements Genotipo
+{
 	private static final int NUMLETRAS = 26;
 	private ArrayList<Character> codigo;
 
@@ -42,13 +41,9 @@ public class GenotipoAlfabeto implements Genotipo {
 	 * @return copia del código
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<Character> getCodigo() {
-		ArrayList<Character> clon = new ArrayList<Character>();
-
-		for (int i = 0; i < codigo.size(); i++) {
-			clon.add(new Character(codigo.get(i)));
-		}
-		return clon;
+	public ArrayList<Character> getCodigo()
+	{
+		return (ArrayList<Character>) codigo.clone();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -56,9 +51,7 @@ public class GenotipoAlfabeto implements Genotipo {
 	public Genotipo cloneGenotipo() {
 		GenotipoAlfabeto clon = new GenotipoAlfabeto();
 
-		for (int i = 0; i < codigo.size(); i++) {
-			clon.codigo.add(new Character(codigo.get(i)));
-		}
+		clon.codigo = (ArrayList<Character>) codigo.clone();
 
 		return clon;
 	}
@@ -67,8 +60,9 @@ public class GenotipoAlfabeto implements Genotipo {
 		return NUMLETRAS;
 	}
 
-	public void setCodigo(ArrayList<Character> c) {
-		codigo = (ArrayList<Character>) c.clone();
+	public void setCodigo(ArrayList<Character> c)
+	{
+		codigo = c;
 	}
 
 }

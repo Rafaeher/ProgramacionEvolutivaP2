@@ -42,10 +42,12 @@ public class FenotipoMensaje implements Fenotipo
 		
 		for(int i = 0; i < mensajeCodificado.length(); i++)
 		{
-			if(codigoHash.containsKey(mensajeCodificado.charAt(i))){
+			if(codigoHash.containsKey(mensajeCodificado.charAt(i)))
+			{
 				mensajeDecodificado += codigoHash.get(mensajeCodificado.charAt(i));
 			}
-			else{
+			else
+			{
 				mensajeDecodificado += " ";
 			}
 			
@@ -70,7 +72,4 @@ public class FenotipoMensaje implements Fenotipo
 		clon.mensajeDecodificado = new String( mensajeDecodificado);
 		return clon;
 	}
-	
-
-	
 }
