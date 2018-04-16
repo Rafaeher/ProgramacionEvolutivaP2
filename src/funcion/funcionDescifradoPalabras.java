@@ -11,13 +11,13 @@ import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal>
+public class funcionDescifradoPalabras<GenotipoFD extends Genotipo> extends Funcion<GenotipoFD, FenotipoMensaje, FitnessReal>
 {
 	private int numNGrama;
 	private String mensaje;
 	private static HashMap<String, Double> frecuenciasEsperadas;
 	
-	public FuncionDescifrado
+	public funcionDescifradoPalabras
 	(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion, Configuracion configuracion)
 	{
 		super(poblacion, configuracion);
@@ -44,23 +44,25 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 			for(String ngrama : frecuenciasRelativas.keySet())
 			{
 				double frecuencia = 0.0;
-				if(ngrama.length() < numNGrama){
-					frecuencia = DAO_Ngramas.lectura(ngrama.length()).get(ngrama);
-					System.out.println("era menor");
-				}
-				else{
+			//	if(ngrama.length() < numNGrama){
+			//		frecuencia = DAO_Ngramas.lectura(ngrama.length()).get(ngrama);
+				//	System.out.println("era menor");
+			//	}
+			//	else{
 					try{
 						if(frecuenciasEsperadas.containsKey(ngrama))
 						frecuencia = frecuenciasEsperadas.get(ngrama);
 						else frecuencia = 0.0;
 						
-						
+						if(frecuenciasEsperadas.containsKey("the")){
+	//						System.out.println("Frecuencia de the " + frecuenciasEsperadas.get("the"));
+						}
 					}
 					catch(Exception e){
 						System.out.println("");
 					}
-				}
-				double diferencia = frecuenciasRelativas.get(ngrama) - frecuencia;
+			// 	}
+				double diferencia = frecuencia- frecuenciasRelativas.get(ngrama);
 				fitness += diferencia * diferencia;
 			}
 			
@@ -114,23 +116,34 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 	{
 		Double ngramasTotales = 0.0;
 		HashMap<String, Double> resultado = new HashMap<String, Double>();
-			
-		for(int i = 0; i <= mensajeDecodificado.length() - n; i++)
+		
+		String[] palabras = mensajeDecodificado.split(" ");
+	//	for(int i = 0; i <= mensajeDecodificado.length() - n; i++)
+		for(int i = 0; i < palabras.length; i++)
 		{
+			String ngrama = palabras[i];
+			/*
 			String ngrama = "";
-			for(int j = i; j < n + i; j++)
-			{
+			int j = i;
+			boolean fin = false;
+	//		while(j < n +i && !fin){
+			while(!fin && j < mensajeDecodificado.length()){
 				if (esLetra(mensajeDecodificado.charAt(j)))
 				{
 					ngrama += mensajeDecodificado.charAt(j);
 				}
-				else
-				{
+				else if(mensajeDecodificado.charAt(j) == ' '){
+					fin = true;
+					i = j + 1;
+				}
+				else{
 					j = n + i;
 					ngrama = "";
 				}
-			}
 				
+				j++;
+			}
+			*/
 			if (!ngrama.equals(""))
 			{ 
 				ngramasTotales++;

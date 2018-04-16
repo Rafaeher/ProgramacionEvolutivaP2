@@ -346,7 +346,7 @@ public class PanelInfo extends javax.swing.JPanel {
 			
 			
 			Configuracion c = new Configuracion(true, precision, num_generaciones, prob_mutacion, r, m, s, g,
-					cruceporcentaje, tamano_poblacion, elite,jTextArea3.getText().toLowerCase(), 4);
+					cruceporcentaje, tamano_poblacion, elite,jTextArea3.getText().toLowerCase(), 0);
 			Controlador controlador = new Controlador();
 			System.out.println("tamaño de la poblacion" + tamano_poblacion);
 			controlador.execute(c);
