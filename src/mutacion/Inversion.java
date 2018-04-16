@@ -3,12 +3,11 @@ package mutacion;
 import java.util.ArrayList;
 import java.util.Random;
 
-import fenotipo.Fenotipo;
 import fenotipo.FenotipoMensaje;
 import fitness.Fitness;
 import genotipo.GenotipoAlfabeto;
 
-public class Inversion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
+public class Inversion<FitnessUPB extends Fitness>
 implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override

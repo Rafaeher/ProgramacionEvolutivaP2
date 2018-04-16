@@ -6,34 +6,33 @@ import java.util.Random;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
-import fenotipo.FenotipoMensaje;
 import fitness.Fitness;
 import genotipo.GenotipoAlfabeto;
 import individuo.Individuo;
 import utils.AlfabetoHashMap;
 import utils.Constantes;
 
-public class CodificacionOrdinal<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
-implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
+public class CodificacionOrdinal<FenotipoCO extends Fenotipo, FitnessUPB extends Fitness>
+implements Reproduccion<GenotipoAlfabeto, FenotipoCO, FitnessUPB> {
 
 	@Override
-	public ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> reproduce(
-			ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacion, Configuracion c) {
+	public ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> reproduce(
+			ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> poblacion, Configuracion c) {
 		
-		ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacionFinal = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>>();
+		ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> poblacionFinal = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>>();
 
 		Random r = new Random();
 		for (int i = 0; i < poblacion.size(); i = i + 2) {
 
 			// Obtenemos dos individuos aleatorios
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = 
+			Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i1 = 
 					poblacion.get(r.nextInt(poblacion.size())).cloneIndividuo();
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = 
+			Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i2 = 
 					poblacion.get(r.nextInt(poblacion.size())).cloneIndividuo();
 
 			if (r.nextDouble() <= c.getCruceporcentaje()) {
 				// Cruzamos los dos individuos
-				ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> individuosReproducidos = alg_reproduccion(
+				ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> individuosReproducidos = alg_reproduccion(
 						i1, i2);
 				poblacionFinal.add(individuosReproducidos.get(0));
 				poblacionFinal.add(individuosReproducidos.get(1));
@@ -48,10 +47,10 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 		return poblacionFinal;
 	}
 
-	private ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>>
+	private ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>>
 	alg_reproduccion(
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1,
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2)
+			Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i1,
+			Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i2)
 	{
 		ArrayList<Integer> listaDinamica1 = new ArrayList<Integer>();
 		ArrayList<Integer> listaDinamica2 = new ArrayList<Integer>();
@@ -108,13 +107,13 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 		g1.setCodigo(resultado1);
 		g2.setCodigo(resultado2);
 		
-		Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1Clon = i1.cloneIndividuo();
-		Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2Clon = i2.cloneIndividuo();
+		Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i1Clon = i1.cloneIndividuo();
+		Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i2Clon = i2.cloneIndividuo();
 		
 		i1Clon.setGenotipo(g1);
 		i2Clon.setGenotipo(g2);
 
-		ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> arrayResultado = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>>();
+		ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> arrayResultado = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>>();
 		arrayResultado.add(i1Clon);
 		arrayResultado.add(i2Clon);
 		

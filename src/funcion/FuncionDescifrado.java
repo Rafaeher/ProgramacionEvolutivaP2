@@ -161,6 +161,7 @@ public class FuncionDescifrado<GenotipoFD extends Genotipo> extends Funcion<Geno
 	{
 		return false;
 	}
+	
 	public Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> mejor(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion){
 		Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> mejor = poblacion.get(0);
 		for(int i = 0; i < poblacion.size(); i++){
