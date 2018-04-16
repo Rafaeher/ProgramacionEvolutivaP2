@@ -93,7 +93,9 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			//algEvalua(poblacion);
 			Individuo ind = mejor(poblacion);
 			System.out.println(ind.getFitness().getValorReal());
+
 			if(it == 99){
+
 				System.out.println(poblacion.size());
 				ind = mejor(poblacion);
 				System.out.println(ind.getFitness().getValorReal());
