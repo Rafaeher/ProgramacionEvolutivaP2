@@ -2,6 +2,7 @@ package funcion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
@@ -43,27 +44,8 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	{
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite = null;
 		int it = 0;
-		//algEvalua(poblacion);
 		while (it < configuracion.getNum_generaciones() -1)
         {
-			/*
-			it++;
-			//seleccion
-			//algSeleccion(poblacion);
-			//pintar(it);
-			algEvalua(poblacion);
-			algSeleccion(poblacion);
-			algReproduccion(poblacion);
-			algMutacion(poblacion);
-			//algEvalua(poblacion);
-			System.out.println(it);
-			if(it == 299){
-				System.out.println(poblacion.size());
-				Individuo ind = mejor(poblacion);
-				System.out.println(ind.getFitness().getValorReal());
-				
-			}
-			*/
 			
 			System.out.println(it);
 			algEvalua(poblacion);
@@ -78,27 +60,24 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			if(configuracion.getCruceporcentaje() > 0)
 			algReproduccion(poblacion);
 			//Mutacion
-			if(configuracion.getProb_mutacion() > 0)
-			if(it == 33){
-					System.out.println("");
-					System.out.println("");
+			if(configuracion.getProb_mutacion() > 0){
+				algMutacion(poblacion);
 			}
-			algMutacion(poblacion);
 			if(configuracion.getElite() > 0){
 				algEvalua(poblacion);
 				colocaLaelite(elite);
 			}
 			
-			//pintar(it);
+			pintar(it);
 			//algEvalua(poblacion);
-			Individuo ind = mejor(poblacion);
-			System.out.println(ind.getFitness().getValorReal());
+	//		Individuo ind = mejor(poblacion);
+	//		System.out.println(ind.getFitness().getValorReal());
 
 			if(it == 99){
 
-				System.out.println(poblacion.size());
-				ind = mejor(poblacion);
-				System.out.println(ind.getFitness().getValorReal());
+	//			System.out.println(poblacion.size());
+	//			ind = mejor(poblacion);
+	//			System.out.println(ind.getFitness().getValorReal());
 			}
 			
 		}
@@ -126,9 +105,11 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 
 	private void algMutacion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> reproducidos)
 	{
+		Random r = new Random();
 		for(int i = 0; i < reproducidos.size(); i++)
 		{
-				reproducidos.get(i).muta(configuracion.getMutacion_seleccionada(),configuracion.getProb_mutacion());
+			if(r.nextDouble() < configuracion.getProb_mutacion())
+			reproducidos.get(i).muta(configuracion.getMutacion_seleccionada(),configuracion.getProb_mutacion());
 		}
 	}
 	
