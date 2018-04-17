@@ -71,5 +71,6 @@ public class FenotipoMensaje implements Fenotipo
 		FenotipoMensaje clon =  new FenotipoMensaje( new String(mensajeCodificado));
 		clon.mensajeDecodificado = new String( mensajeDecodificado);
 		return clon;
+		
 	}
 }

@@ -13,14 +13,14 @@ implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
 	public void muta(GenotipoAlfabeto genotipo, FenotipoMensaje fenotipo, double prob_mutacion) {
-		for(int i = 0; i < genotipo.getCodigo().size(); i++){
+		//for(int i = 0; i < genotipo.getCodigo().size(); i++){
 			Random r = new Random();
-			if (r.nextDouble() < prob_mutacion) {
+		//	if (r.nextDouble() < prob_mutacion) {
 				ArrayList<Character> codigo = alg_mutacion(genotipo.getCodigo(), r.nextInt(genotipo.getSize()), r.nextInt(genotipo.getSize()));
 				genotipo.setCodigo(codigo);
-			}
+		//	}
 
-		}
+		//}
 	}
 
 	private ArrayList<Character> alg_mutacion(ArrayList<Character> codigo, int a, int b) {

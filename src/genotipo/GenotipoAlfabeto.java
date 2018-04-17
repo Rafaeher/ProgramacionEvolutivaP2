@@ -49,11 +49,13 @@ public class GenotipoAlfabeto implements Genotipo
 	@SuppressWarnings("unchecked")
 	@Override
 	public Genotipo cloneGenotipo() {
+		
 		GenotipoAlfabeto clon = new GenotipoAlfabeto();
 
 		clon.codigo = (ArrayList<Character>) codigo.clone();
 
 		return clon;
+		
 	}
 
 	public int getSize() {
