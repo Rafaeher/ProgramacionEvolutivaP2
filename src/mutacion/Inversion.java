@@ -16,10 +16,10 @@ implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 		//La probabilidad es para el individuo entero y no para cada gen
 		Random r = new Random();
 		int posA = r.nextInt();
-		if(r.nextDouble() <= prob_mutacion){
+	//	if(r.nextDouble() <= prob_mutacion){
 			ArrayList<Character> codigo = alg_mutacion(genotipo.getCodigo(), r.nextInt(posA) ,posA);
 			genotipo.setCodigo(codigo);
-		}
+	//	}
 	}
 	
 	private ArrayList<Character> alg_mutacion(ArrayList<Character> codigo, int posA, int posB){
