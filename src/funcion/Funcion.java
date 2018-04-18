@@ -45,18 +45,16 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	{
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite = new ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>();
 		int it = 0;
+		
+		// Evaluación inicial
+		algEvalua(poblacion);
+		
 		while (it < configuracion.getNum_generaciones() -1)
         {
-			
-			System.out.println(it);
-			
-			algEvalua(poblacion);
-			
-			obtenerEstadisticas(it);
-			colocaLaelite(elite);
+			System.out.println(it);			
+			it++;
 			
 			elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
-			it++;
 			
 			//seleccion
 			algSeleccion(poblacion);
@@ -72,6 +70,14 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			{
 				algMutacion(poblacion);
 			}
+			
+			colocaLaelite(elite);
+			
+			algEvalua(poblacion);
+			
+			obtenerEstadisticas(it);
+			
+
 		}
 	}
 
