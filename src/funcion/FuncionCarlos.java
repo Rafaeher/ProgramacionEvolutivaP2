@@ -30,7 +30,7 @@ public class FuncionCarlos<GenotipoFD extends Genotipo> extends Funcion<Genotipo
 	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion) {
 		
 		for(int i = 0; i < poblacion.size(); i++){
-			String mensaje = poblacion.get(0).getFenotipo().getMensajeDecodificado();
+			String mensaje = poblacion.get(0).getFenotipo().getMensajeDecodificadoLowerCase();
 			String[] palabras = mensaje.split(" ");
 			double fitness = 0.0;
 			for(int j = 0; j < palabras.length; j++){
@@ -62,7 +62,7 @@ public class FuncionCarlos<GenotipoFD extends Genotipo> extends Funcion<Genotipo
 			Double fitness = (double) c.getMensaje().length();
 			System.out.println(fitness);
 			String palabra = "";
-			String[] parts = individuo.getFenotipo().getMensajeDecodificado().split(" ");
+			String[] parts = individuo.getFenotipo().getMensajeDecodificadoLowerCase().split(" ");
 			for (int i = 0; i < parts.length; i++) {
 
 				if (dao.estaPalabra(palabra)) {

@@ -32,7 +32,7 @@ public class FuncionHibrida<GenotipoFD extends Genotipo> extends Funcion<Genotip
 			Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
 			individuo.setFenotipo(fenotipo);
 
-			String mensajeDecodificado = fenotipo.getMensajeDecodificado();
+			String mensajeDecodificado = fenotipo.getMensajeDecodificadoLowerCase();
 
 			double factor = MultiplicaPalabras(mensajeDecodificado);
 

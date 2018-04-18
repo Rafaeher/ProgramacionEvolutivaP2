@@ -27,7 +27,7 @@ implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>  {
 			
 			int top1 = 0, top2 = 0;
 			
-			String[] palabras = fenotipo.getMensajeDecodificado().split(" ");
+			String[] palabras = fenotipo.getMensajeDecodificadoLowerCase().split(" ");
 			HashMap<Character, Double> aux = new HashMap<Character, Double>();
 			for(int i = 0; i < palabras.length; i++){
 				if((mapTop1.containsKey(palabras[i]) || mapTop2.containsKey(palabras[i]))

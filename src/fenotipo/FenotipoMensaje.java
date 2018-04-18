@@ -37,10 +37,11 @@ public class FenotipoMensaje implements Fenotipo
 		String decodificado = new String(mensajeCodificado);
 		for(int i = 0; i < alfabeto.length(); i++)
 		{
-			String aux =decodificado.replace(alfabeto.charAt(i), Character.toUpperCase(codigo.get(i)));
+			String aux = decodificado.replace(alfabeto.charAt(i), Character.toUpperCase(codigo.get(i)));
 			decodificado = new String(aux);
 		}
-		mensajeDecodificado = decodificado.toLowerCase();
+		
+		mensajeDecodificado = decodificado;
 		
 	}
 	
@@ -48,6 +49,11 @@ public class FenotipoMensaje implements Fenotipo
 	 * Obtiene el mensaje decodificado
 	 * @return
 	 */
+	public String getMensajeDecodificadoLowerCase()
+	{
+		return new String(mensajeDecodificado).toLowerCase();
+	}
+	
 	public String getMensajeDecodificado()
 	{
 		return new String(mensajeDecodificado);

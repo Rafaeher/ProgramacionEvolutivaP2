@@ -33,7 +33,7 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 			Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
 			individuo.setFenotipo(fenotipo);
 
-			String mensajeDecodificado = fenotipo.getMensajeDecodificado();
+			String mensajeDecodificado = fenotipo.getMensajeDecodificadoLowerCase();
 
 			HashMap<String, Double> frecuenciasRelativas = calcularFrecuencias(numNGrama, mensajeDecodificado);
 
