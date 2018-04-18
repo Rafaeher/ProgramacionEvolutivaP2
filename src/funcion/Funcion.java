@@ -52,7 +52,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		while (it < configuracion.getNum_generaciones() -1)
         {
 			System.out.println(it);			
+			
 			it++;
+
+			algEvalua(poblacion);
 			
 			elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			
@@ -71,13 +74,12 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 				algMutacion(poblacion);
 			}
 			
-			colocaLaelite(elite);
-			
 			algEvalua(poblacion);
+			
+			colocaLaelite(elite);
 			
 			obtenerEstadisticas(it);
 			
-
 		}
 	}
 
