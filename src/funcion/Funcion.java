@@ -12,6 +12,7 @@ import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.ComparadorIndividuo;
 import individuo.Individuo;
+import presentacion.Vista;
 import reproduccion.FactoriaReproduccion;
 import reproduccion.Reproduccion;
 import seleccion.FactoriaSeleccion;
@@ -69,17 +70,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			}
 			
 			pintar(it);
-			//algEvalua(poblacion);
-	//		Individuo ind = mejor(poblacion);
-	//		System.out.println(ind.getFitness().getValorReal());
-
-			if(it == 99){
-
-	//			System.out.println(poblacion.size());
-	//			ind = mejor(poblacion);
-	//			System.out.println(ind.getFitness().getValorReal());
-			}
-			
+	//		Vista.getVista().pintaProgreso(it);
 		}
 	}
 
@@ -115,7 +106,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	
 	private void pintar(int it)
 	{
-		algEvalua(poblacion);
+		//algEvalua(poblacion);
 		//Para pintar
 		x_generaciones[it] = it;
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> aux = calculaLosMejoresDeLaPoblacion(poblacion,1);

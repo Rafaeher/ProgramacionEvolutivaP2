@@ -11,7 +11,7 @@ public class Configuracion {
 	//false -> minimizar
 	private boolean maximizar;
 	//precision guarda el error (ej 0.0001)
-	private double precision;
+	//private double precision;
 	//numParametros indica el numero de parametros de la funcion
 	//private int numParametros;
 	//Guarda el numero maximo de generaciones que introduce el usario
@@ -28,12 +28,11 @@ public class Configuracion {
 	private int numNGrama;
 
 
-	public Configuracion(boolean maximizar, double precision, int num_generaciones, double prob_mutacion,
+	public Configuracion(boolean maximizar, int num_generaciones, double prob_mutacion,
 			Reproduccion_enum r, Mutacion_enum m, Seleccion_enum s, Genotipo_enum g, double probcruce,
 			int tamano_poblacion, int el, String mensajeE, int numNGramaE)
 	{
 		this.maximizar = maximizar;
-		this.precision = precision;
 		this.num_generaciones = num_generaciones;
 		this.prob_mutacion = prob_mutacion / 100;
 		this.reproduccion_seleccionada = r;
@@ -53,14 +52,6 @@ public class Configuracion {
 	
 	public void setMaximizar(boolean maximizar) {
 		this.maximizar = maximizar;
-	}
-	
-	public double getPrecision() {
-		return precision;
-	}
-	
-	public void setPrecision(double precision) {
-		this.precision = precision;
 	}
 
 	public Reproduccion_enum getReproduccion_seleccionada() {
