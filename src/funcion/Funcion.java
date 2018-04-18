@@ -122,7 +122,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		
 		for(int i = 1; i < poblacion.size(); i++)
 		{
-			if(comparador.compare(mejor, poblacion.get(i)) < 0)
+			if(comparador.compare(mejor, poblacion.get(i)) > 0)
 			{
 				mejor = poblacion.get(i);
 			}
