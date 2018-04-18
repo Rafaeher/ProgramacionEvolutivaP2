@@ -51,8 +51,8 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 				}
 				double diferencia = frecuencia - frecuenciasRelativas.get(ngrama);
 				fitness += diferencia * diferencia;
-			}
-
+			}			
+			
 			individuo.setFitness(new FitnessReal(fitness));
 		}
 	}
