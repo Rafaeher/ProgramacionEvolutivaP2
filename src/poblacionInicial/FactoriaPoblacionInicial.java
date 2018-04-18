@@ -28,11 +28,11 @@ public class FactoriaPoblacionInicial
 			FenotipoMensaje fenotipo = new FenotipoMensaje(configuracion.getMensaje());
 			Decodificador.decodifica(genotipo, fenotipo);
 			
-	//		FitnessReal fitness = new FitnessReal(r.nextDouble());
+			//FitnessReal fitness = new FitnessReal(r.nextDouble());
 			
 			individuo.setGenotipo(genotipo);
 			individuo.setFenotipo(fenotipo);
-	//		individuo.setFitness(fitness);
+			//individuo.setFitness(fitness);
 			
 			((ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessReal>>) result).add(individuo);
 		}

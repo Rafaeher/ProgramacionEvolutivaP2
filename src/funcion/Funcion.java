@@ -42,42 +42,34 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	
 	public void algoritmoGenetico()
 	{
-		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite = null;
+		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite = new ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>();
 		int it = 0;
 		while (it < configuracion.getNum_generaciones() -1)
         {
 			
 			System.out.println(it);
+			
 			algEvalua(poblacion);
-			if(configuracion.getElite() > 0)
-			{
-				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
-			}
+			
+			obtenerEstadisticas(it);
+			colocaLaelite(elite);
+			
+			elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			it++;
+			
 			//seleccion
 			algSeleccion(poblacion);
+			
 			//reproduccion
 			if(configuracion.getCruceporcentaje() > 0)
-			algReproduccion(poblacion);
-			//Mutacion
-			if(configuracion.getProb_mutacion() > 0){
-				algMutacion(poblacion);
-			}
-			if(configuracion.getElite() > 0){
-				algEvalua(poblacion);
-				colocaLaelite(elite);
+			{
+				algReproduccion(poblacion);
 			}
 			
-			pintar(it);
-			//algEvalua(poblacion);
-	//		Individuo ind = mejor(poblacion);
-	//		System.out.println(ind.getFitness().getValorReal());
-
-			if(it == 99){
-
-	//			System.out.println(poblacion.size());
-	//			ind = mejor(poblacion);
-	//			System.out.println(ind.getFitness().getValorReal());
+			//Mutacion
+			if(configuracion.getProb_mutacion() > 0)
+			{
+				algMutacion(poblacion);
 			}
 			
 		}
@@ -113,41 +105,48 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		}
 	}
 	
-	private void pintar(int it)
+	private void obtenerEstadisticas(int it)
 	{
-		algEvalua(poblacion);
 		//Para pintar
 		x_generaciones[it] = it;
-		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> aux = calculaLosMejoresDeLaPoblacion(poblacion,1);
-		FitnessF mejor_poblacion = aux.get(0).getFitness();
+		Individuo<GenotipoF, FenotipoF, FitnessF> mejor = poblacion.get(0);
+		y_media[it] = poblacion.get(0).getFitness().getValorReal();
+		
+		ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF> comparador = new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar());
+		
+		for(int i = 1; i < poblacion.size(); i++)
+		{
+			if(comparador.compare(mejor, poblacion.get(i)) < 0)
+			{
+				mejor = poblacion.get(i);
+			}
+			
+			y_media[it] += poblacion.get(i).getFitness().getValorReal();
+		}
+		
+		y_media[it] = y_media[it] / poblacion.size();
+		
+		FitnessF mejorFitness = mejor.getFitness();
+		
 		try{
-			y_mejor_iteracion[it] = mejor_poblacion.getValorReal();
+			y_mejor_iteracion[it] = mejorFitness.getValorReal();
 		}
 		catch(Exception e){
 			System.err.println("Error en pintar(int) de Funcion");
 		}
 		
 		if(getMaximizar()){
-			if(mejor_poblacion.getValorReal() > mejorAbsoluto) {
-				mejorAbsoluto = mejor_poblacion.getValorReal();
+			if(mejorFitness.getValorReal() > mejorAbsoluto) {
+				mejorAbsoluto = mejorFitness.getValorReal();
 			}
 		}
 		else{
-			if(mejor_poblacion.getValorReal() < mejorAbsoluto) {
-				mejorAbsoluto = mejor_poblacion.getValorReal();
+			if(mejorFitness.getValorReal() < mejorAbsoluto) {
+				mejorAbsoluto = mejorFitness.getValorReal();
 			}
 		}
 		
 		y_mejor_total[it] = mejorAbsoluto;
-		y_media[it] = calculaMedia();
-	}
-	
-	private double calculaMedia(){
-		double total = 0;
-		for(int i = 0; i < poblacion.size(); i++){
-			total = total + poblacion.get(i).getFitness().getValorReal();
-		}
-		return (total / poblacion.size());
 	}
 
 	public double[] getGeneraciones() {
@@ -162,6 +161,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	public double[] getMedia() {
 		return y_media;
 	}
+	
 	public abstract void algEvalua(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion);
 	
 	public void colocaLaelite(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite)

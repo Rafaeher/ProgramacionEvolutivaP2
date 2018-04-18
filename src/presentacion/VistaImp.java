@@ -43,7 +43,7 @@ public class VistaImp extends Vista {
 	@Override
 	public void repintaGrafica(double[] x_generaciones, double[] y_mejorPoblacion,
 			double[] y_mejorAbsoluto,double[] y_media, String mensaje) {
-		double aux =y_media[2] ;
+		double aux = y_media[2] ;
 		y_media[0] = aux;
 		y_mejorPoblacion[0] = aux;
 		y_mejorAbsoluto[0] = aux;
