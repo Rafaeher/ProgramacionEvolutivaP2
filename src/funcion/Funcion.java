@@ -55,7 +55,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			it++;
 
-			algEvalua(poblacion);
+			//algEvalua(poblacion);
 			
 			elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			
