@@ -12,6 +12,7 @@ import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.ComparadorIndividuo;
 import individuo.Individuo;
+import presentacion.Vista;
 import reproduccion.FactoriaReproduccion;
 import reproduccion.Reproduccion;
 import seleccion.FactoriaSeleccion;
@@ -71,7 +72,6 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			{
 				algMutacion(poblacion);
 			}
-			
 		}
 	}
 

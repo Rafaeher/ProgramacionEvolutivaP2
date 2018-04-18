@@ -54,5 +54,10 @@ public class VistaImp extends Vista {
 		plot.addLinePlot("Media de la población", x_generaciones, y_media);
 		this.panelInfo.setTexto(mensaje);
 	}
+	@Override
+	public void pintaProgreso(int num) {
+		this.panelInfo.setProgress(num);
+		this.frame.repaint();
+	}
 	
 }

@@ -12,5 +12,6 @@ public abstract class Vista {
 	}
 	public abstract void repintaGrafica(double[] x_generaciones, double[] y_mejorPoblacion,
 			double[] y_mejorAbsoluto,double[] y_media, String mensaje);
+	public abstract void pintaProgreso(int num);
 	
 }

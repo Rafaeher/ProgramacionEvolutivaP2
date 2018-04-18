@@ -16,13 +16,13 @@ public class Insercion<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		int b;
 		Random r = new Random();
 		int pos = r.nextInt(genotipo.getSize());
-		if (r.nextDouble() < prob_mutacion) {
+	//	if (r.nextDouble() < prob_mutacion) {
 			if(pos == 0) b = 0;
 			else
 				b = r.nextInt(pos);
 				ArrayList<Character> codigo = alg_mutacion(genotipo.getCodigo(), pos,b);
 				genotipo.setCodigo(codigo);
-		}
+	//	}
 
 	}
 
