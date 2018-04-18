@@ -30,10 +30,10 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion) {
 		for (Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> individuo : poblacion) {
 			FenotipoMensaje fenotipo = new FenotipoMensaje(mensaje);
-		//	Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
+			Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
 			individuo.setFenotipo(fenotipo);
 
-			String mensajeDecodificado = mensaje;
+			String mensajeDecodificado = fenotipo.getMensajeDecodificado();
 			HashMap<String, Double> frecuenciasRelativas = calcularFrecuencias(numNGrama, mensajeDecodificado);
 
 			double fitness = 0.0;
@@ -65,23 +65,24 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 	 * @return
 	 */
 	private HashMap<String, Double> calcularFrecuencias(int n, String mensajeDecodificado) {
-	//	Double ngramasTotales = 0.0;
-		HashMap<String, Double> resultado = new HashMap<String, Double>(); 
-		String[] palabras = mensajeDecodificado.split(" +");
-		int numeroPalabras = palabras.length;
-	//	System.out.println(palabras.length);
+		Double ngramasTotales = 0.0;
+		HashMap<String, Double> resultado = new HashMap<String, Double>();
+
+		String[] palabras = mensajeDecodificado.split(" ");
 		for (int i = 0; i < palabras.length; i++) {
 			String ngrama = palabras[i];
 			if (!ngrama.equals("")) {
-	//			ngramasTotales++;
+				ngramasTotales++;
 				if (!resultado.containsKey(ngrama)) {
-					resultado.put(ngrama, (1.0 / numeroPalabras));
+					resultado.put(ngrama, 1.0);
 				} else {
-					double frecuenciaAntigua = (resultado.get(ngrama)* numeroPalabras);
-					double frecuenciaNueva = (frecuenciaAntigua +1) / numeroPalabras;
-					resultado.put(ngrama, frecuenciaNueva);
+					resultado.put(ngrama, (resultado.get(ngrama) + 1));
 				}
 			}
+		}
+
+		for (String ngrama : resultado.keySet()) {
+			resultado.replace(ngrama, resultado.get(ngrama) / ngramasTotales);
 		}
 
 		return resultado;
