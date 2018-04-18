@@ -396,11 +396,11 @@ public class PanelInfo extends javax.swing.JPanel {
 	private void cosasPorDefecto() {
 		this.jProgressBar1.setVisible(false);
 		this.jTextFieldNGramas.setText("0");
-		this.jTextFieldPoblacion.setText("100");
+		this.jTextFieldPoblacion.setText("300");
 		this.jTextFieldCruceporcentaje.setText("60");
-		this.jTextFieldGeneraciones.setText("100");
-		this.jTextFieldProbMutacion.setText("5");
-		this.jTextFieldElite.setText("2");
+		this.jTextFieldGeneraciones.setText("200");
+		this.jTextFieldProbMutacion.setText("8");
+		this.jTextFieldElite.setText("5");
 		String texto3 = "GNX NVMVNL XP G QUEVNLV NGSCV PM WYZGS GOXUEUXUVL US ONVGXUSC EULYGT,";
 		texto3 += "GYQUXPNH PN KVNMPNZUSC GNXUMGOXL. XWVLV GNXFPNBL VJKNVLL XWV GYXWPN'L UZGCU";
 		texto3 += "SGXUEV PN XVOWSUOGT LBUTT. GNX UL USXVSQVQ XP IV GKKNVOUGXVQ MPN UXL IVGYXH";
