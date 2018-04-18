@@ -30,10 +30,11 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 	public void algEvalua(ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion) {
 		for (Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> individuo : poblacion) {
 			FenotipoMensaje fenotipo = new FenotipoMensaje(mensaje);
-		//	Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
+			Decodificador.decodifica(individuo.getGenotipo(), fenotipo);
 			individuo.setFenotipo(fenotipo);
 
-			String mensajeDecodificado = mensaje;
+			String mensajeDecodificado = fenotipo.getMensajeDecodificado();
+			
 			HashMap<String, Double> frecuenciasRelativas = calcularFrecuencias(numNGrama, mensajeDecodificado);
 
 			double fitness = 0.0;

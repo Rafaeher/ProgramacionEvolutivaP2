@@ -32,27 +32,16 @@ public class FenotipoMensaje implements Fenotipo
 	public void decodifica(final ArrayList<Character> codigo)
 	{
 		final String alfabeto = "abcdefghijklmnopqrstuvwxyz";
-		HashMap<Character, Character> codigoHash = new HashMap<Character, Character>();
-		mensajeDecodificado = "";
+		mensajeDecodificado = new String(mensajeCodificado);
 		
+		String decodificado = new String(mensajeCodificado);
 		for(int i = 0; i < alfabeto.length(); i++)
 		{
-			codigoHash.put(alfabeto.charAt(i), codigo.get(i));
+			String aux =decodificado.replace(alfabeto.charAt(i), Character.toUpperCase(codigo.get(i)));
+			decodificado = new String(aux);
 		}
+		mensajeDecodificado = decodificado.toLowerCase();
 		
-		for(int i = 0; i < mensajeCodificado.length(); i++)
-		{
-			if(codigoHash.containsKey(mensajeCodificado.charAt(i)))
-			{
-				mensajeDecodificado += codigoHash.get(mensajeCodificado.charAt(i));
-			}
-			else
-			{
-				mensajeDecodificado += " ";
-			}
-			
-		}
-		//System.out.println("");
 	}
 	
 	/**
