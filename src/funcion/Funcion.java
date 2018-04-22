@@ -44,11 +44,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		
 		// Evaluación inicial
 		algEvalua(poblacion);
+		mejorAbsoluto = mejor(poblacion).getFitness().getValorReal();
 		
-		while (it < configuracion.getNum_generaciones() -1)
-        {
-			System.out.println(it);			
-			
+		while (it < configuracion.getNum_generaciones() - 1)
+        {		
 			it++;
 			
 			elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
@@ -130,20 +129,25 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		
 		FitnessF mejorFitness = mejor.getFitness();
 		
-		try{
+		try
+		{
 			y_mejor_iteracion[it] = mejorFitness.getValorReal();
 		}
 		catch(Exception e){
 			System.err.println("Error en pintar(int) de Funcion");
 		}
 		
-		if(getMaximizar()){
-			if(mejorFitness.getValorReal() > mejorAbsoluto) {
+		if(getMaximizar())
+		{
+			if(mejorFitness.getValorReal() > mejorAbsoluto)
+			{
 				mejorAbsoluto = mejorFitness.getValorReal();
 			}
 		}
-		else{
-			if(mejorFitness.getValorReal() < mejorAbsoluto) {
+		else
+		{
+			if(mejorFitness.getValorReal() < mejorAbsoluto)
+			{
 				mejorAbsoluto = mejorFitness.getValorReal();
 			}
 		}
@@ -151,16 +155,20 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		y_mejor_total[it] = mejorAbsoluto;
 	}
 
-	public double[] getGeneraciones() {
+	public double[] getGeneraciones()
+	{
 		return x_generaciones;
 	}
-	public double[] getmejoriteracion(){
+	public double[] getmejoriteracion()
+	{
 		return y_mejor_iteracion;
 	}
-	public double[] gety_mejor_total(){
+	public double[] gety_mejor_total()
+	{
 		return y_mejor_total;
 	}
-	public double[] getMedia() {
+	public double[] getMedia()
+	{
 		return y_media;
 	}
 	

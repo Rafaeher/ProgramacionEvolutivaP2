@@ -59,6 +59,11 @@ public class FenotipoMensaje implements Fenotipo
 		return new String(mensajeDecodificado);
 	}
 	
+	public String getMensajeCodificado()
+	{
+		return new String(mensajeCodificado);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Fenotipo cloneFenotipo()
