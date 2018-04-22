@@ -16,30 +16,30 @@ public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fi
 	@Override
 	public void muta(GenotipoAlfabeto genotipo, FenotipoMensaje fenotipo, double prob_mutacion) {
 		HashMap<String, Double> ngramas = DAO_Ngramas.lectura(1);
-		HashMap<String, Double> frecuenciaText = new HashMap<String, Double>();
+		HashMap<Character, Double> frecuenciaText = new HashMap<Character, Double>();
 		String mensaje = fenotipo.getMensajeDecodificadoLowerCase();
 	//	System.out.println("TAMAÑO " + fenotipo.getMensajeDecodificadoLowerCase().length());
 		for(int i = 0; i < mensaje.length(); ++i){
 			if(mensaje.charAt(i) != ' ' && esLetra(mensaje.charAt(i))){
 				if(!frecuenciaText.containsKey(mensaje.charAt(i))){
-					frecuenciaText.put(Character.toString(mensaje.charAt(i)), 1.0 / mensaje.length());
+					frecuenciaText.put(mensaje.charAt(i), 1.0 / mensaje.length());
 				}
 				else{
-					double veces = (frecuenciaText.get(Character.toString(mensaje.charAt(i))) * 
+					double veces = (frecuenciaText.get(mensaje.charAt(i)) * 
 							mensaje.length()) + 1.0;
 					double frecuencia = veces / mensaje.length();
-					frecuenciaText.put(Character.toString(mensaje.charAt(i)), frecuencia);
+					frecuenciaText.put(mensaje.charAt(i), frecuencia);
 				}
 			}
 		}
 		//YA HEMOS CALCULADO LA FRECUENCIA DE LOS MONOGRAMAS
 		//AHORA INTERCAMBIAREMOS LOS DOS CON FRECUENCIA MAS BAJA
 		double errorMasAlto1 = 0.0;
-		String errorMasAlto1Character = "";
+		Character errorMasAlto1Character = null;
 		double errorMasAlto2 = 0.0;
-		String errorMasAlto2Character = "";
-		for (String ngrama : frecuenciaText.keySet()) {
-			double error = Math.abs(ngramas.get(ngrama) - frecuenciaText.get(ngrama));
+		Character errorMasAlto2Character = null;
+		for (Character ngrama : frecuenciaText.keySet()) {
+			double error = Math.abs(ngramas.get(ngrama.toString()) - frecuenciaText.get(ngrama));
 
 			
 			
@@ -48,7 +48,7 @@ public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fi
 				errorMasAlto2Character = ngrama;
 			}
 			if(error > errorMasAlto2 && error > errorMasAlto1){
-				String characterAux = errorMasAlto1Character;
+				Character characterAux = errorMasAlto1Character;
 				double errorAux = errorMasAlto1;
 				errorMasAlto1Character = ngrama;
 				errorMasAlto1 = error;
@@ -58,17 +58,20 @@ public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fi
 		}
 		
 		ArrayList<Character> array = genotipo.getCodigo();
-		for(int i = 0; i < array.size(); i++){
-			if(array.get(i) == errorMasAlto1Character.charAt(0)){
-				array.set(i, errorMasAlto2Character.charAt(0));
+		for(int j = 0; j < array.size(); j++){
+			if(array.get(j) == errorMasAlto1Character){
+				array.set(j, errorMasAlto2Character);
 			}
-			if(array.get(i) == errorMasAlto2Character.charAt(0)){
-				array.set(i, errorMasAlto1Character.charAt(0));
+			if(array.get(j) == errorMasAlto2Character){
+				array.set(j, errorMasAlto1Character);
 			}
 		}
 		genotipo.setCodigo(array);
 			
 	}
+	
+	
+	
 	private boolean esLetra(char c)
 	{
 		return c == 'a' ||
