@@ -18,6 +18,7 @@ FactoriaMutacion<GenotipoALF extends Genotipo, FenotipoALF extends Fenotipo, Fit
         case INVERSION: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new Inversion<FitnessALF>();
         case INTERCAMBIO: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new Intercambio<FenotipoALF, FitnessALF>();
         case MUTACION_HIBRIDA: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new MutacionHibrida<FenotipoALF, FitnessALF>();
+        case HEURISTICA: return (Mutacion<GenotipoALF, FenotipoALF, FitnessALF>) new Heuristica();
             default: return null;
         }
     }
