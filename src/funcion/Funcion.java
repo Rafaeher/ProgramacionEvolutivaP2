@@ -1,12 +1,14 @@
 package funcion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
 import fitness.Fitness;
 import genotipo.Genotipo;
+import genotipo.GenotipoAlfabeto;
 import individuo.ComparadorIndividuo;
 import individuo.Individuo;
 import reproduccion.FactoriaReproduccion;
@@ -73,6 +75,17 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			colocaLaelite(elite);
 			
 			obtenerEstadisticas(it);
+			
+			if(it == 199){
+				System.out.println("");
+				System.out.println("");
+			}
+			for(int k = 0; k < poblacion.size(); ++k){
+				GenotipoAlfabeto g = (GenotipoAlfabeto)poblacion.get(k).getGenotipo();
+				if(tieneElementosRepetidos(g.getCodigo())){
+					System.out.println("ERROR TIENE ELEMENTOS REPETIDOS");
+				}
+			}
 			
 		}
 	}
@@ -189,6 +202,14 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	}
 	
 	public abstract boolean getMaximizar();
+	private boolean tieneElementosRepetidos(ArrayList<Character> array){
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for(int i = 0; i < array.size(); i++){
+			if(map.containsKey(array.get(i)))return true;
+			else map.put(array.get(i), null);
+		}
+		return false;
+	}
 	
 	public Individuo<GenotipoF, FenotipoF, FitnessF> getMejor()
 	{
