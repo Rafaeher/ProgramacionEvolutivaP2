@@ -79,8 +79,14 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoCO, FitnessUPB> {
 		// Realiza la codificación ordinal y añade los números necesarios en las listas dinámicas para la decodificación
 		for(int i = 0; i < Constantes.ALFABETO.length(); i++)
 		{
-			codOrdinal1.add(listaDinamica1.indexOf(codInt1.get(i)));
-			codOrdinal2.add(listaDinamica2.indexOf(codInt2.get(i)));
+			int index1 = listaDinamica1.indexOf(codInt1.get(i));
+			int index2 = listaDinamica2.indexOf(codInt2.get(i));
+
+			codOrdinal1.add(index1);
+			codOrdinal2.add(index2);
+			
+			listaDinamica1.remove(index1);
+			listaDinamica2.remove(index2);
 			
 			listaDinamica1.add(i);
 			listaDinamica2.add(i);
@@ -94,11 +100,20 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoCO, FitnessUPB> {
 			codOrdinal2.set(i, aux);
 		}
 		
+		ArrayList<Integer> prueba = new ArrayList<Integer>();
+		
 		// Realiza la decodificación
 		for(int i = 0; i < Constantes.ALFABETO.length(); i++)
 		{
-			resultado1.add(Constantes.ALFABETO.charAt(listaDinamica1.indexOf(codInt1.get(i))));
-			resultado2.add(Constantes.ALFABETO.charAt(listaDinamica2.indexOf(codInt2.get(i))));
+			int index1 = codOrdinal1.get(i);
+			int index2 = codOrdinal2.get(i);
+			
+			resultado1.add(Constantes.ALFABETO.charAt(listaDinamica1.get(index1)));
+			resultado2.add(Constantes.ALFABETO.charAt(listaDinamica2.get(index2)));
+			
+			
+			listaDinamica1.remove(index1);
+			listaDinamica2.remove(index2);
 		}
 		
 		GenotipoAlfabeto g1 = new GenotipoAlfabeto();
