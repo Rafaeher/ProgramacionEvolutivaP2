@@ -1,5 +1,5 @@
 package configuracion;
 
 public enum Reproduccion_enum {
-	PMX, CODIFICACION_ORDINAL;
+	PMX, CODIFICACION_ORDINAL, NUESTRA;
 }
