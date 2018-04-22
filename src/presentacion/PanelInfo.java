@@ -1,6 +1,7 @@
 package presentacion;
 
 import javax.swing.JOptionPane;
+import javax.swing.ProgressMonitor;
 
 import configuracion.Configuracion;
 import configuracion.Genotipo_enum;
@@ -86,7 +87,8 @@ public class PanelInfo extends javax.swing.JPanel {
 
 		jComboBoxSeleccion.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 		jComboBoxSeleccion.setModel(
-				new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruleta", "Estocastica", "Truncamiento" }));
+				new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruleta", "Estocastica", "Truncamiento", "Torneo Deterministico",
+						"Torneo Probabilistico"}));
 		jComboBoxSeleccion.setToolTipText("Elige un método de seleccion");
 		jComboBoxSeleccion.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,6 +461,10 @@ public class PanelInfo extends javax.swing.JPanel {
 			Configuracion c = new Configuracion(true, num_generaciones, prob_mutacion, r, m, s, g, cruceporcentaje,
 					tamano_poblacion, elite, jTextArea3.getText().toLowerCase(), ngramas);
 
+			//jProgressBar1 = new JProgressBar(0, task.getLengthOfTask());
+		//	jProgressBar1.setValue(0);
+		//	jProgressBar1.setStringPainted(true);
+			
 			Controlador controlador = new Controlador();
 			// System.out.println("tamaño de la poblacion" + tamano_poblacion);
 			controlador.execute(c);
@@ -517,6 +523,8 @@ public class PanelInfo extends javax.swing.JPanel {
 	public void setProgress(int num) {
 		this.jProgressBar1.setValue(num);
 		this.jProgressBar1.repaint();
+		progressMonitor.setProgress(num);
+		this.repaint();
 	}
 
 	// Variables declaration - do not modify
@@ -545,5 +553,7 @@ public class PanelInfo extends javax.swing.JPanel {
 	private javax.swing.JTextField jTextFieldPoblacion;
 	private javax.swing.JTextField jTextFieldProbMutacion;
 	private javax.swing.JTextField jTextFieldElite;
+	
+	private ProgressMonitor progressMonitor;
 	// End of variables declaration
 }

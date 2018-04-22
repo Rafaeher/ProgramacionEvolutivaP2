@@ -66,7 +66,7 @@ public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fi
 				array.set(i, errorMasAlto1Character.charAt(0));
 			}
 		}
-		
+		genotipo.setCodigo(array);
 			
 	}
 	private boolean esLetra(char c)

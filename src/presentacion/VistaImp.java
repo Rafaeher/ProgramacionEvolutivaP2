@@ -3,6 +3,8 @@ package presentacion;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.ProgressMonitor;
+
 import org.math.plot.Plot2DPanel;
 
 public class VistaImp extends Vista {
@@ -56,8 +58,11 @@ public class VistaImp extends Vista {
 	}
 	@Override
 	public void pintaProgreso(int num) {
+		
 		this.panelInfo.setProgress(num);
 		this.frame.repaint();
+//		this.frame.repaint();
+		panelInfo.repaint();
 	}
 	
 }
