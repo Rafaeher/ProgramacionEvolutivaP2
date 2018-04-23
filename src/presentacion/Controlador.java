@@ -23,7 +23,9 @@ public class Controlador {
 		FactoriaFunciones<GenotipoAlfabeto,FenotipoMensaje, FitnessReal> factoriaFunciones = new FactoriaFunciones<GenotipoAlfabeto,FenotipoMensaje, FitnessReal>();
 		Funcion<GenotipoAlfabeto, FenotipoMensaje, FitnessReal> funcion = factoriaFunciones.getSeleccion(1, pob, c);
 		funcion.algoritmoGenetico();
-		Vista.getVista().repintaGrafica(funcion.getGeneraciones(), funcion.getmejoriteracion(), funcion.gety_mejor_total(),funcion.getMedia(), funcion.getMejor().getFenotipo().getMensajeDecodificado());
+		Vista.getVista().repintaGrafica(funcion.getGeneraciones(), funcion.getmejoriteracion(), funcion.gety_mejor_total(),
+				funcion.getMedia(), funcion.getMejor().getFenotipo().getMensajeDecodificado(), funcion.getMejorAbsoluto(),
+				funcion.getPeorAbsoluto(), funcion.getTotalCruces(), funcion.getTotalMutaciones());
 	}
 	
 	

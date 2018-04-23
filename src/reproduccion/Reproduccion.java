@@ -10,6 +10,6 @@ import individuo.Individuo;
 
 public interface Reproduccion<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, FitnessR extends Fitness>
 {
-	ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>
-	reproduce(ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> poblacion, Configuracion c);
+	int
+	reproduce(ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> poblacionInicial, Configuracion c, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> poblacionFinal);
 }

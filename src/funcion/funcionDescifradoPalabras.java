@@ -21,9 +21,7 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 			Configuracion configuracion) {
 		super(poblacion, configuracion);
 		mensaje = configuracion.getMensaje();
-		numNGrama = configuracion.getNumNGrama();
 		frecuenciasEsperadas = DAO_Ngramas.lectura(0);
-		numNGrama = configuracion.getNumNGrama();
 	}
 
 	@Override
@@ -102,6 +100,16 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 				mejor = poblacion.get(i);
 		}
 		return mejor.cloneIndividuo();
+	}
+	
+	public Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> peor(
+			ArrayList<Individuo<GenotipoFD, FenotipoMensaje, FitnessReal>> poblacion) {
+		Individuo<GenotipoFD, FenotipoMensaje, FitnessReal> peor = poblacion.get(0);
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getFitness().getValor() > peor.getFitness().getValor())
+				peor = poblacion.get(i);
+		}
+		return peor.cloneIndividuo();
 	}
 
 }

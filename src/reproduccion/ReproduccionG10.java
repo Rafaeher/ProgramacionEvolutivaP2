@@ -12,25 +12,26 @@ import genotipo.GenotipoAlfabeto;
 import individuo.Individuo;
 import utils.AlfabetoHashMap;
 
-public class ReproduccionNuestra<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
+public class ReproduccionG10<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	private int TAM = 13;
 	
 	@Override
-	public ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> reproduce(
-			ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacion, Configuracion c) {
+	public int reproduce(
+			ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacionInicial, Configuracion c, ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacion) {
 
 
 		ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacionFinal = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>>();
 
+		int totalCruces = 0;
 		Random r = new Random();
-		for (int i = 0; i < poblacion.size(); i = i + 2) {
+		for (int i = 0; i < poblacionInicial.size(); i = i + 2) {
 
 			// Obtenemos dos individuos aleatorios
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = poblacion.get(r.nextInt(poblacion.size()))
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = poblacionInicial.get(r.nextInt(poblacionInicial.size()))
 					.cloneIndividuo();
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = poblacion.get(r.nextInt(poblacion.size()))
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = poblacionInicial.get(r.nextInt(poblacionInicial.size()))
 					.cloneIndividuo();
 
 			if (r.nextDouble() <= c.getCruceporcentaje()) {
@@ -39,6 +40,8 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 						i1, i2);
 				poblacionFinal.add(individuosReproducidos.get(0));
 				poblacionFinal.add(individuosReproducidos.get(1));
+				totalCruces++;
+				
 			} else {
 				// No cruzamos los dos individuos y por tanto los metemos en la
 				// población final
@@ -47,8 +50,9 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 			}
 		}
 
+		poblacion = poblacionFinal;
 		
-		return poblacionFinal;
+		return totalCruces;
 		
 	}
 
@@ -123,12 +127,6 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 				faltanInd2 = faltanInd2.substring(1);
 				
 			}
-		}
-		if(tieneElementosRepetidos(genotipoInd1Final)){
-			System.out.println("");
-		}
-		if(tieneElementosRepetidos(genotipoInd2Final)){
-			System.out.println("");
 		}
 		GenotipoAlfabeto genotipoFinalInd1 = new GenotipoAlfabeto();
 		GenotipoAlfabeto genotipoFinalInd2 = new GenotipoAlfabeto();

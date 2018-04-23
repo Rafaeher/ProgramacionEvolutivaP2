@@ -63,7 +63,7 @@ public class Heuristica  implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, 
 			
 			FactoriaFunciones<GenotipoAlfabeto, FenotipoMensaje, FitnessReal> factoria = new FactoriaFunciones<GenotipoAlfabeto, FenotipoMensaje, FitnessReal>();
 			Configuracion config = new Configuracion(false, 0, 0.0, null,
-					null, null, null, 0.0, 6, 0, fenotipo.getMensajeCodificado(), 0);
+					null, null, null, 0.0, 6, 0, fenotipo.getMensajeCodificado());
 			Funcion<GenotipoAlfabeto, FenotipoMensaje, FitnessReal> funcion = factoria.getSeleccion(0, individuos, config);
 			funcion.algEvalua(individuos);
 			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessReal> mejor = funcion.mejor(individuos);

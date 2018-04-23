@@ -25,6 +25,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	private double[] y_mejor_total;
 	private double[] y_media;
 	private double mejorAbsoluto;
+	private double peorAbsoluto;
+	private Integer totalCruces;
+	private Integer totalMutaciones;
+	private double media;
 	
 
 	public Funcion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion, Configuracion configuracion)
@@ -35,6 +39,9 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		this.y_mejor_iteracion = new double[configuracion.getNum_generaciones()];
 		this.y_mejor_total = new double[configuracion.getNum_generaciones()];
 		this.y_media = new double[configuracion.getNum_generaciones()];
+		this.totalCruces = 0;
+		this.totalMutaciones = 0;
+		this.media = 0;
 		
 	}
 	
@@ -46,6 +53,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		// Evaluación inicial
 		algEvalua(poblacion);
 		mejorAbsoluto = mejor(poblacion).getFitness().getValorReal();
+		peorAbsoluto = peor(poblacion).getFitness().getValorReal();
 		
 		while (it < configuracion.getNum_generaciones() - 1)
         {		
@@ -95,7 +103,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		//Obtenemos el mecanismo de reproduccion
 		Reproduccion<GenotipoF, FenotipoF, FitnessF> reproduccion = factoriaReproduccion.getReproduccion(this.configuracion.getReproduccion_seleccionada());
 		//Reproducimos los individuos y devolvemos la poblacion con los individuos nuevos en ella
-			this.poblacion = reproduccion.reproduce(seleccionados, configuracion);
+			this.totalCruces += reproduccion.reproduce(seleccionados, configuracion, poblacion);
 	}
 
 	private void algMutacion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> reproducidos)
@@ -104,7 +112,10 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		for(int i = 0; i < reproducidos.size(); i++)
 		{
 			if(r.nextDouble() < configuracion.getProb_mutacion())
-			reproducidos.get(i).muta(configuracion.getMutacion_seleccionada(),configuracion.getProb_mutacion());
+			{
+				totalMutaciones++;
+				reproducidos.get(i).muta(configuracion.getMutacion_seleccionada(), configuracion.getProb_mutacion());
+			}
 		}
 	}
 	
@@ -113,6 +124,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		//Para pintar
 		x_generaciones[it] = it;
 		Individuo<GenotipoF, FenotipoF, FitnessF> mejor = poblacion.get(0);
+		Individuo<GenotipoF, FenotipoF, FitnessF> peor = poblacion.get(0);
 		y_media[it] = poblacion.get(0).getFitness().getValorReal();
 		
 		ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF> comparador = new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar());
@@ -124,12 +136,18 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 				mejor = poblacion.get(i);
 			}
 			
+			if (comparador.compare(peor, poblacion.get(i)) < 0)
+			{
+				peor = poblacion.get(i);
+			}
+			
 			y_media[it] += poblacion.get(i).getFitness().getValorReal();
 		}
 		
 		y_media[it] = y_media[it] / poblacion.size();
 		
 		FitnessF mejorFitness = mejor.getFitness();
+		FitnessF peorFitness = peor.getFitness();
 		
 		try
 		{
@@ -145,12 +163,22 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			{
 				mejorAbsoluto = mejorFitness.getValorReal();
 			}
+			
+			if(peorFitness.getValorReal() < peorAbsoluto)
+			{
+				peorAbsoluto = peorFitness.getValorReal();
+			}
 		}
 		else
 		{
 			if(mejorFitness.getValorReal() < mejorAbsoluto)
 			{
 				mejorAbsoluto = mejorFitness.getValorReal();
+			}
+			
+			if(peorFitness.getValorReal() > peorAbsoluto)
+			{
+				peorAbsoluto = peorFitness.getValorReal();
 			}
 		}
 		
@@ -174,6 +202,26 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		return y_media;
 	}
 	
+	public double getMejorAbsoluto()
+	{
+		return this.mejorAbsoluto;
+	}
+	
+	public double getPeorAbsoluto()
+	{
+		return this.peorAbsoluto;
+	}
+	
+	public Integer getTotalCruces()
+	{
+		return totalCruces;
+	}
+	
+	public Integer getTotalMutaciones()
+	{
+		return totalMutaciones;
+	}
+	
 	public abstract void algEvalua(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion);
 	
 	public void colocaLaelite(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite)
@@ -187,6 +235,9 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		
 	}
 	public abstract Individuo<GenotipoF, FenotipoF, FitnessF> mejor(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion);
+	
+	public abstract Individuo<GenotipoF, FenotipoF, FitnessF> peor(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion);
+	
 	public ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion, int tam)
 	{
 		poblacion.sort(new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar()));

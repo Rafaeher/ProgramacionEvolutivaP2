@@ -10,7 +10,7 @@ import fenotipo.FenotipoMensaje;
 import fitness.Fitness;
 import genotipo.GenotipoAlfabeto;
 
-public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
+public class MutacionG10<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		implements Mutacion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
@@ -18,7 +18,7 @@ public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fi
 		HashMap<String, Double> ngramas = DAO_Ngramas.lectura(1);
 		HashMap<Character, Double> frecuenciaText = new HashMap<Character, Double>();
 		String mensaje = fenotipo.getMensajeDecodificadoLowerCase();
-	//	System.out.println("TAMAÑO " + fenotipo.getMensajeDecodificadoLowerCase().length());
+		
 		for(int i = 0; i < mensaje.length(); ++i){
 			if(mensaje.charAt(i) != ' ' && esLetra(mensaje.charAt(i))){
 				if(!frecuenciaText.containsKey(mensaje.charAt(i))){
@@ -33,24 +33,24 @@ public class MutacionHibrida<FenotipoUPB extends Fenotipo, FitnessUPB extends Fi
 			}
 		}
 		//YA HEMOS CALCULADO LA FRECUENCIA DE LOS MONOGRAMAS
-		//AHORA INTERCAMBIAREMOS LOS DOS CON FRECUENCIA MAS BAJA
+		//AHORA INTERCAMBIAREMOS LOS DOS CON MAYOR ERROR
 		double errorMasAlto1 = 0.0;
 		Character errorMasAlto1Character = null;
 		double errorMasAlto2 = 0.0;
 		Character errorMasAlto2Character = null;
-		for (Character ngrama : frecuenciaText.keySet()) {
-			double error = Math.abs(ngramas.get(ngrama.toString()) - frecuenciaText.get(ngrama));
+		for (Character ch : frecuenciaText.keySet()) {
+			double error = Math.abs(ngramas.get(ch.toString()) - frecuenciaText.get(ch));
 
 			
 			
 			if(error > errorMasAlto2 && error <= errorMasAlto1){
 				errorMasAlto2 = error;
-				errorMasAlto2Character = ngrama;
+				errorMasAlto2Character = ch;
 			}
 			if(error > errorMasAlto2 && error > errorMasAlto1){
 				Character characterAux = errorMasAlto1Character;
 				double errorAux = errorMasAlto1;
-				errorMasAlto1Character = ngrama;
+				errorMasAlto1Character = ch;
 				errorMasAlto1 = error;
 				errorMasAlto2 = errorAux;
 				errorMasAlto2Character = characterAux;

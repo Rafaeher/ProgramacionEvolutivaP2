@@ -17,11 +17,7 @@ public class FactoriaFunciones<GenotipoALF extends Genotipo, FenotipoALF extends
 		
     	switch(f)
 		{
-		//default: return new FuncionHibrida(poblacion,config);
-		//default: return new FuncionDescifrado(poblacion,config);
-		//default: return new FuncionCarlos(poblacion,config);
-		//default: return new FuncionPalabras(poblacion,config);
-		default: return new funcionDescifradoPalabras(poblacion,config);
+    	default: return new funcionDescifradoPalabras(poblacion,config);
 		}
     }
 }

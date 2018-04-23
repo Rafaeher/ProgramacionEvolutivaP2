@@ -16,19 +16,20 @@ public class CodificacionOrdinal<FenotipoCO extends Fenotipo, FitnessUPB extends
 implements Reproduccion<GenotipoAlfabeto, FenotipoCO, FitnessUPB> {
 
 	@Override
-	public ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> reproduce(
-			ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> poblacion, Configuracion c) {
+	public int reproduce(
+			ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> poblacionInicial, Configuracion c, ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> poblacion) {
 		
 		ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>> poblacionFinal = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>>();
 
+		int totalCruces = 0;
 		Random r = new Random();
-		for (int i = 0; i < poblacion.size(); i = i + 2) {
+		for (int i = 0; i < poblacionInicial.size(); i = i + 2) {
 
 			// Obtenemos dos individuos aleatorios
 			Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i1 = 
-					poblacion.get(r.nextInt(poblacion.size())).cloneIndividuo();
+					poblacionInicial.get(r.nextInt(poblacionInicial.size())).cloneIndividuo();
 			Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB> i2 = 
-					poblacion.get(r.nextInt(poblacion.size())).cloneIndividuo();
+					poblacionInicial.get(r.nextInt(poblacionInicial.size())).cloneIndividuo();
 
 			if (r.nextDouble() <= c.getCruceporcentaje()) {
 				// Cruzamos los dos individuos
@@ -41,10 +42,14 @@ implements Reproduccion<GenotipoAlfabeto, FenotipoCO, FitnessUPB> {
 				// población final
 				poblacionFinal.add(i1);
 				poblacionFinal.add(i2);
+				totalCruces++;
 			}
+		
 		}
 
-		return poblacionFinal;
+		poblacion = poblacionFinal;
+		
+		return totalCruces;
 	}
 
 	private ArrayList<Individuo<GenotipoAlfabeto, FenotipoCO, FitnessUPB>>

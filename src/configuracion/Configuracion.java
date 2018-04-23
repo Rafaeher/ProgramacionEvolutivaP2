@@ -25,12 +25,11 @@ public class Configuracion {
 	private Seleccion_enum seleccion_seleccionada;
 	private int elite;
 	private String mensaje;
-	private int numNGrama;
 
 
 	public Configuracion(boolean maximizar, int num_generaciones, double prob_mutacion,
 			Reproduccion_enum r, Mutacion_enum m, Seleccion_enum s, Genotipo_enum g, double probcruce,
-			int tamano_poblacion, int el, String mensajeE, int numNGramaE)
+			int tamano_poblacion, int el, String mensajeE)
 	{
 		this.maximizar = maximizar;
 		this.num_generaciones = num_generaciones;
@@ -42,7 +41,6 @@ public class Configuracion {
 		this.tamano_poblacion = tamano_poblacion;
 		this.elite = el;
 		this.mensaje = mensajeE;
-		this.numNGrama = numNGramaE;
 
 	}
 
@@ -118,11 +116,6 @@ public class Configuracion {
 	public String getMensaje()
 	{
 		return mensaje;
-	}
-	
-	public int getNumNGrama()
-	{
-		return numNGrama;
 	}
 	
 }

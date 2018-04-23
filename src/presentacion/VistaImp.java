@@ -44,17 +44,32 @@ public class VistaImp extends Vista {
 	}
 	@Override
 	public void repintaGrafica(double[] x_generaciones, double[] y_mejorPoblacion,
-			double[] y_mejorAbsoluto,double[] y_media, String mensaje) {
+			double[] y_mejorAbsoluto,double[] y_media, String mensaje, double mejorAbsoluto,
+			double peorAbsoluto, Integer totalCruces, Integer totalMutaciones) {
 		double aux = y_media[2] ;
 		y_media[0] = aux;
 		y_mejorPoblacion[0] = aux;
 		y_mejorAbsoluto[0] = aux;
+		
+		double media = 0.0;
+		for(int i = 0; i < y_media.length; i++)
+		{
+			media += y_media[i];
+		}
+		media = media / y_media.length;
+		
 		plot.removeAllPlots();
 		plot.addLegend("SOUTH");
 		plot.addLinePlot("Mejor absoluto", x_generaciones, y_mejorAbsoluto);
 		plot.addLinePlot("Mejor de la generación", x_generaciones, y_mejorPoblacion);
 		plot.addLinePlot("Media de la población", x_generaciones, y_media);
-		this.panelInfo.setTexto(mensaje);
+		String estadisticas = System.getProperty("line.separator")
+				+ System.getProperty("line.separator") + "Mejor: " + mejorAbsoluto
+				+ System.getProperty("line.separator") + "Peor: " + peorAbsoluto
+				+ System.getProperty("line.separator") + "Media: " + media
+				+ System.getProperty("line.separator") + "Total cruces: " + totalCruces
+				+ System.getProperty("line.separator") + "Total mutaciones: " + totalMutaciones;
+		this.panelInfo.setTexto(mensaje, estadisticas);
 	}
 	@Override
 	public void pintaProgreso(int num) {

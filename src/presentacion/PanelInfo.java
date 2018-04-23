@@ -51,7 +51,6 @@ public class PanelInfo extends javax.swing.JPanel {
 		jTextArea4 = new javax.swing.JTextArea();
 		jButtonRun = new javax.swing.JButton();
 		jLabel1 = new javax.swing.JLabel();
-		jTextFieldNGramas = new javax.swing.JTextField();
 		jComboBoxMutacion = new javax.swing.JComboBox<>();
 		jLabelSeleccion1 = new javax.swing.JLabel();
 		jComboBoxFitness = new javax.swing.JComboBox<>();
@@ -97,7 +96,7 @@ public class PanelInfo extends javax.swing.JPanel {
 		});
 
 		jComboBoxCruce.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-		jComboBoxCruce.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PMX", "Ordinal", "Nuestra" }));
+		jComboBoxCruce.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PMX", "Ordinal", "RepG10" }));
 		jComboBoxCruce.setToolTipText("Selecciona un mecanismo de cruce");
 		jComboBoxCruce.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		jComboBoxCruce.addActionListener(new java.awt.event.ActionListener() {
@@ -161,12 +160,9 @@ public class PanelInfo extends javax.swing.JPanel {
 			}
 		});
 
-		jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-		jLabel1.setText("NGramas");
-
 		jComboBoxMutacion.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 		jComboBoxMutacion.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "Intercambio", "Insercion", "Inversion", "Nuestra", "Heuristica" }));
+				new String[] { "Intercambio", "Insercion", "Inversion", "MutG10", "Heuristica" }));
 		jComboBoxMutacion.setToolTipText("Selecciona un mecanismo de cruce");
 		jComboBoxMutacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		jComboBoxMutacion.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +176,7 @@ public class PanelInfo extends javax.swing.JPanel {
 
 		jComboBoxFitness.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 		jComboBoxFitness
-				.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Palabras", "Ngramas", "Otro" }));
+				.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Palabras"}));
 		jComboBoxFitness.setToolTipText("Elige un método de seleccion");
 		jComboBoxFitness.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,12 +251,6 @@ public class PanelInfo extends javax.swing.JPanel {
 																				javax.swing.GroupLayout.Alignment.TRAILING,
 																				javax.swing.GroupLayout.PREFERRED_SIZE,
 																				140,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				jTextFieldNGramas,
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				140,
 																				javax.swing.GroupLayout.PREFERRED_SIZE)))
 														.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
 																layout.createSequentialGroup()
@@ -331,9 +321,7 @@ public class PanelInfo extends javax.swing.JPanel {
 				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
-								.addComponent(jTextFieldNGramas, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
+								
 								.addGap(1, 1, 1))
 						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
 								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -397,7 +385,6 @@ public class PanelInfo extends javax.swing.JPanel {
 
 	private void cosasPorDefecto() {
 		this.jProgressBar1.setVisible(false);
-		this.jTextFieldNGramas.setText("0");
 		this.jTextFieldPoblacion.setText("300");
 		this.jTextFieldCruceporcentaje.setText("60");
 		this.jTextFieldGeneraciones.setText("200");
@@ -445,7 +432,6 @@ public class PanelInfo extends javax.swing.JPanel {
 			// this.tipo = tipo;
 			int tamano_poblacion = Integer.parseInt(this.jTextFieldPoblacion.getText());
 			int num_generaciones = Integer.parseInt(this.jTextFieldGeneraciones.getText());
-			int ngramas = Integer.parseInt(this.jTextFieldNGramas.getText());
 			String seleccion = (String) this.jComboBoxSeleccion.getSelectedItem();
 			String cruce = (String) this.jComboBoxCruce.getSelectedItem();
 			String mutacion = (String) this.jComboBoxMutacion.getSelectedItem();
@@ -459,7 +445,7 @@ public class PanelInfo extends javax.swing.JPanel {
 			this.jProgressBar1.setMaximum(num_generaciones);
 			this.jProgressBar1.setMinimum(0);
 			Configuracion c = new Configuracion(true, num_generaciones, prob_mutacion, r, m, s, g, cruceporcentaje,
-					tamano_poblacion, elite, jTextArea3.getText().toLowerCase(), ngramas);
+					tamano_poblacion, elite, jTextArea3.getText().toLowerCase());
 
 			//jProgressBar1 = new JProgressBar(0, task.getLengthOfTask());
 		//	jProgressBar1.setValue(0);
@@ -492,8 +478,8 @@ public class PanelInfo extends javax.swing.JPanel {
 			return Reproduccion_enum.PMX;
 		case "Ordinal":
 			return Reproduccion_enum.CODIFICACION_ORDINAL;
-		case "Nuestra":
-			return Reproduccion_enum.NUESTRA;
+		case "RepG10":
+			return Reproduccion_enum.ReproduccionG10;
 		default:
 			return null;
 		}
@@ -507,8 +493,8 @@ public class PanelInfo extends javax.swing.JPanel {
 			return Mutacion_enum.INTERCAMBIO;
 		case "Inversion":
 			return Mutacion_enum.INVERSION;
-		case "Nuestra":
-			return Mutacion_enum.MUTACION_HIBRIDA;
+		case "MutG10":
+			return Mutacion_enum.MutacionG10;
 		case "Heuristica":
 			return Mutacion_enum.HEURISTICA;
 		default:
@@ -517,7 +503,7 @@ public class PanelInfo extends javax.swing.JPanel {
 
 	}
 
-	public void setTexto(String texto)
+	public void setTexto(String texto, String estadisticas)
 	{
 		String original = jTextArea3.getText();
 		String textoFinal = "";
@@ -533,6 +519,8 @@ public class PanelInfo extends javax.swing.JPanel {
 				textoFinal += texto.charAt(i);
 			}
 		}
+		
+		textoFinal += estadisticas;
 		
 		this.jTextArea4.setText(textoFinal);
 
@@ -567,7 +555,6 @@ public class PanelInfo extends javax.swing.JPanel {
 	private javax.swing.JTextArea jTextArea4;
 	private javax.swing.JTextField jTextFieldCruceporcentaje;
 	private javax.swing.JTextField jTextFieldGeneraciones;
-	private javax.swing.JTextField jTextFieldNGramas;
 	private javax.swing.JTextField jTextFieldPoblacion;
 	private javax.swing.JTextField jTextFieldProbMutacion;
 	private javax.swing.JTextField jTextFieldElite;

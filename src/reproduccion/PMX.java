@@ -14,18 +14,19 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 		implements Reproduccion<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> {
 
 	@Override
-	public ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> reproduce(
-			ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacion, Configuracion c) {
+	public int reproduce(
+			ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacionInicial, Configuracion c, ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacion) {
 
 		ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> poblacionFinal = new ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>>();
 
+		int totalCruces = 0;
 		Random r = new Random();
-		for (int i = 0; i < poblacion.size(); i = i + 2) {
+		for (int i = 0; i < poblacionInicial.size(); i = i + 2) {
 
 			// Obtenemos dos individuos aleatorios
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = poblacion.get(r.nextInt(poblacion.size()))
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i1 = poblacionInicial.get(r.nextInt(poblacionInicial.size()))
 					.cloneIndividuo();
-			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = poblacion.get(r.nextInt(poblacion.size()))
+			Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB> i2 = poblacionInicial.get(r.nextInt(poblacionInicial.size()))
 					.cloneIndividuo();
 
 			if (r.nextDouble() <= c.getCruceporcentaje()) {
@@ -34,6 +35,7 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 						i1, i2);
 				poblacionFinal.add(individuosReproducidos.get(0));
 				poblacionFinal.add(individuosReproducidos.get(1));
+				totalCruces++;
 			} else {
 				// No cruzamos los dos individuos y por tanto los metemos en la
 				// población final
@@ -42,8 +44,8 @@ public class PMX<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
 			}
 		}
 
-		
-		return poblacionFinal;
+		poblacion = poblacionFinal;
+		return totalCruces;
 	}
 
 	private ArrayList<Individuo<GenotipoAlfabeto, FenotipoMensaje, FitnessUPB>> alg_reproduccion(
