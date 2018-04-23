@@ -74,7 +74,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			obtenerEstadisticas(it);
 			
-//			System.out.println("Iteracion " + it);
+			System.out.println("Iteracion " + it);
 			
 			
 		}

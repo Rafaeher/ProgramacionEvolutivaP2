@@ -515,8 +515,24 @@ public class PanelInfo extends javax.swing.JPanel {
 
 	}
 
-	public void setTexto(String texto) {
-		this.jTextArea4.setText(texto);
+	public void setTexto(String texto)
+	{
+		String original = jTextArea3.getText();
+		String textoFinal = "";
+		
+		for(int i = 0; i < original.length(); i++)
+		{
+			if (Character.isLowerCase(original.charAt(i)))
+			{
+				textoFinal += Character.toLowerCase(texto.charAt(i));
+			}
+			else
+			{
+				textoFinal += texto.charAt(i);
+			}
+		}
+		
+		this.jTextArea4.setText(textoFinal);
 
 	}
 

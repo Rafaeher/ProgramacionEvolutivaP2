@@ -22,7 +22,7 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 		super(poblacion, configuracion);
 		mensaje = configuracion.getMensaje();
 		numNGrama = configuracion.getNumNGrama();
-		frecuenciasEsperadas = DAO_Ngramas.lectura(numNGrama);
+		frecuenciasEsperadas = DAO_Ngramas.lectura(0);
 		numNGrama = configuracion.getNumNGrama();
 	}
 
@@ -103,6 +103,5 @@ public class funcionDescifradoPalabras<GenotipoFD extends Genotipo>
 		}
 		return mejor.cloneIndividuo();
 	}
-	//frecuencia trigramas texto * frecuencia trigramas ingles * log
 
 }
