@@ -15,6 +15,7 @@ public class FactoriaReproduccion<GenotipoALF extends Genotipo, FenotipoALF exte
 		{
 		case PMX:return (Reproduccion<GenotipoALF, FenotipoALF, FitnessALF>) new PMX<FenotipoALF, FitnessALF>();
 		case CODIFICACION_ORDINAL:return (Reproduccion<GenotipoALF, FenotipoALF, FitnessALF>) new CodificacionOrdinal<FenotipoALF, FitnessALF>();
+		case NUESTRA:return (Reproduccion<GenotipoALF, FenotipoALF, FitnessALF>) new ReproduccionNuestra<FenotipoALF, FitnessALF>();
 		default: return null;
 		}
 	}

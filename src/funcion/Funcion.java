@@ -76,7 +76,6 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			System.out.println("Iteracion " + it);
 			
-			
 		}
 	}
 

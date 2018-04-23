@@ -97,7 +97,7 @@ public class PanelInfo extends javax.swing.JPanel {
 		});
 
 		jComboBoxCruce.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-		jComboBoxCruce.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PMX", "Ordinal" }));
+		jComboBoxCruce.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PMX", "Ordinal", "Nuestra" }));
 		jComboBoxCruce.setToolTipText("Selecciona un mecanismo de cruce");
 		jComboBoxCruce.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		jComboBoxCruce.addActionListener(new java.awt.event.ActionListener() {
@@ -492,6 +492,8 @@ public class PanelInfo extends javax.swing.JPanel {
 			return Reproduccion_enum.PMX;
 		case "Ordinal":
 			return Reproduccion_enum.CODIFICACION_ORDINAL;
+		case "Nuestra":
+			return Reproduccion_enum.NUESTRA;
 		default:
 			return null;
 		}
